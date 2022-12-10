@@ -1,30 +1,54 @@
 function photographerFactory(data) {
-	const { name, portrait } = data
+	const { name, portrait, place, tagline, price, linkUrl } = data
 
 	const picture = `assets/photographers/${portrait}`
 
 	function getUserCardDOM() {
-		const article = document.createElement("article")
+		const article = document.createElement('article')
+		const imgCont = document.createElement('div')
+		const link = document.createElement('a')
+		const list = document.createElement('ul')
 
-		article.appendChild(getImage(name, picture))
-		article.appendChild(textBlock())
+		link.setAttribute('href', linkUrl)
+		imgCont.classList.add('photographer_section__imgCont')
+		imgCont.appendChild(getImage(name, picture))
+
+		link.appendChild(imgCont)
+		link.appendChild(textBlock('h2', name))
+
+		article.appendChild(link)
+		list.appendChild(textBlock('li', place))
+		list.appendChild(textBlock('li', tagline))
+		list.appendChild(textBlock('li', price))
+		article.appendChild(list)
 
 		return article
 	}
 
 	// create an image
 	function getImage(name, picture) {
-		const img = document.createElement("img")
-		img.setAttribute("src", picture)
-		img.setAttribute("alt", name)
+		const img = document.createElement('img')
+		img.setAttribute('src', picture)
+		img.setAttribute('alt', name)
 		return img
 	}
 
 	// create block of text
-	function textBlock() {
-		const h2 = document.createElement("h2")
-		h2.textContent = name
+	function textBlock(type, content) {
+		const h2 = document.createElement(type)
+		h2.textContent = content
 		return h2
 	}
 	return { name, picture, getUserCardDOM }
+}
+
+class Photographer {
+	constructor({ name, portrait, city, country, tagline, price, id }) {
+		this.name = name
+		this.portrait = portrait
+		this.place = city + ', ' + country
+		this.tagline = tagline
+		this.price = price + '€/jour'
+		this.linkUrl = '/photographer.html?id=' + id
+	}
 }

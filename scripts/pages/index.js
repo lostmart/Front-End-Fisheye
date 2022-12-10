@@ -10,10 +10,12 @@ async function getPhotographers() {
     */
 
 	try {
-		//const res = await fetch("/data/photographers.json")
+		const res = await fetch('/data/photographers.json')
+		/*
 		const res = await fetch(
-			"http://127.0.0.1:5500/Front-End-Fisheye/data/photographers.json"
+		"http://127.0.0.1:5500/Front-End-Fisheye/data/photographers.json"
 		)
+		*/
 		const photographers = await res.json()
 		return photographers
 	} catch (err) {
@@ -24,10 +26,12 @@ async function getPhotographers() {
 }
 
 async function displayData(photographers) {
-	const photographersSection = document.querySelector(".photographer_section")
+	const photographersSection = document.querySelector('.photographer_section')
 
 	photographers.forEach((photographer) => {
-		const photographerModel = photographerFactory(photographer)
+		const photographerModel = photographerFactory(
+			new Photographer(photographer)
+		)
 		const userCardDOM = photographerModel.getUserCardDOM()
 		photographersSection.appendChild(userCardDOM)
 	})
