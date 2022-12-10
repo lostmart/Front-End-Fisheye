@@ -40,4 +40,7 @@ li {
 	.photographer_section article h2 {
 		font-size: 5.444vh;
 	}
+	.photograph-header {
+		margin: 0 100px;
+	}
 }

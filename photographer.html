@@ -7,19 +7,47 @@
 		<link rel="icon" type="image/png" href="assets/favicon.png" />
 		<link
 			href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap"
-			rel="stylesheet"
-		/>
+			rel="stylesheet" />
 		<title>Fisheye - photographe</title>
 	</head>
 	<body>
-		<header>
-			<img src="assets/images/logo.png" class="logo" />
+		<header class="header">
+			<img src="assets/images/logo.png" class="header__logo" />
 		</header>
 		<main id="main">
 			<div class="photograph-header">
+				<div class="photograph-header__content">
+					<h2>Mimi Keel</h2>
+					<p class="photograph-header__location">London, UK</p>
+					<p class="photograph-header__tag">Voir le beau dans le quotidien</p>
+				</div>
+				<div class="photograph-header__imgCont">
+					<img src="assets/photographers/MimiKeel.jpg" alt="Mimi Keel" />
+				</div>
 				<button class="contact_button" onclick="displayModal()">
 					Contactez-moi
 				</button>
+				<div class="photograph-header__info">
+					<span class="photograph-header__likes">
+						<span>297&nbsp;081</span>
+						<img src="./assets/icons/heart.svg" alt="likes" />
+					</span>
+					<span> 300€ / jour </span>
+				</div>
+
+				<div class="photograph-header__thumbnails">
+					<div class="photograph-header__thumbTitle">
+						<span>Tirer par</span>
+						<ul>
+							<li>
+								Popularité
+								<img src="./assets/icons/chev-down.svg" alt="open indicator" />
+							</li>
+							<li>Date</li>
+							<li>Titre</li>
+						</ul>
+					</div>
+				</div>
 			</div>
 		</main>
 		<div id="contact_modal">
