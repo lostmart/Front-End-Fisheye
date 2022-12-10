@@ -1,0 +1,36 @@
+.header {
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	align-items: center;
+}
+
+.header .header__logo {
+	max-width: 200px;
+	margin-top: 41px;
+}
+
+.header .header__title {
+	color: #901c1c;
+}
+
+/*
+header {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	height: 90px;
+}
+
+h1 {
+	color: #901c1c;
+	margin-right: 100px;
+}
+
+.logo {
+	height: 50px;
+	margin-left: 100px;
+}
+
+*/
