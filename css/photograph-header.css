@@ -2,9 +2,10 @@
 	background-color: #fafafa;
 	height: 300px;
 	margin: 0 auto;
-	display: flex;
-	flex-direction: column;
+	display: grid;
+	grid-template-columns: 1fr;
 	align-items: center;
+	justify-items: center;
 }
 
 .photograph-header .photograph-header__content {
@@ -12,7 +13,6 @@
 	flex-direction: column;
 	align-items: center;
 	justify-items: center;
-	text-align: center;
 }
 
 .photograph-header .photograph-header__content h2 {
@@ -41,6 +41,9 @@
 
 .photograph-header .photograph-header__imgCont img {
 	border-radius: 50%;
+	max-width: 200px;
+	margin: auto;
+	display: block;
 }
 
 .photograph-header .contact_button {
@@ -77,52 +80,88 @@
 	padding-left: 0.5em;
 }
 
-.photograph-header .photograph-header__thumbnails {
-	margin-top: 2em;
-	display: flex;
-	justify-content: end;
-	width: 100%;
+/*   PHTOTOGRAPH MEDIA   */
+
+.photograph-media {
+	margin-top: 21em;
 }
 
-.photograph-header .photograph-header__thumbTitle {
+.photograph-media .photograph-media__thumbnails {
+	margin-top: 2em;
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	padding-left: 0.5em;
+}
+
+.photograph-media .photograph-media__thumbTitle {
 	font-weight: bold;
 	display: flex;
 }
 
-.photograph-header .photograph-header__thumbTitle ul {
+.photograph-media .photograph-media__thumbTitle SPAN {
+	padding-top: 0.4em;
+}
+
+.photograph-media .photograph-media__thumbTitle ul {
 	margin-left: 1em;
 	color: white;
 	background-color: #901c1c;
 	padding: 0.6em 1em;
 	border-radius: 5px;
 	overflow-y: hidden;
-	height: 47px;
+	height: 52px;
 	transition: height 450ms ease-in-out;
 }
 
-.photograph-header .photograph-header__thumbTitle .open-list {
+.photograph-media .photograph-media__thumbTitle .open-list {
 	height: 125px;
 }
 
-.photograph-header .photograph-header__thumbTitle li {
+.photograph-media .photograph-media__thumbTitle li {
 	padding: 0.5em;
 	font-weight: 400;
 	border-bottom: 1px solid transparent;
 	cursor: pointer;
+	display: flex;
+	align-items: center;
 }
 
-.photograph-header .photograph-header__thumbTitle .open-item {
+.photograph-media .photograph-media__thumbTitle .open-item {
 	transform: rotate(180deg);
 	padding-right: 1.5em;
 	padding-left: 0;
 }
 
-.photograph-header__thumbTitle li:first-child {
-	display: flex;
-}
-
-.photograph-header__thumbTitle li img {
+.photograph-media .photograph-media__thumbTitle li img {
 	padding-left: 1.5em;
 	transform: rotate(0);
 	transition: all 450ms ease-in-out;
+}
+
+.photograph-media__scroller {
+	display: grid;
+	grid-auto-flow: column;
+	grid-auto-columns: 100%;
+	overflow-x: auto;
+	overscroll-behavior-inline: contain;
+}
+
+.photograph-media__scroller .photograph-media__card {
+	background-color: pink;
+}
+
+.photograph-media__card .photograph-media__imgCont img{
+	border-radius: 5px;
+}
+
+.photograph-media__scroller .photo-media__text {
+	display: flex;
+	align-items: center;
+	padding: 0.5em;
+	justify-content: space-between;
+}
+
+.photograph-media__scroller .photo-media__text img {
+	width: 17.5px;
 }

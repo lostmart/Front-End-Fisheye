@@ -26,6 +26,10 @@ li {
 }
 
 @media (min-width: 768px) {
+	.header {
+		align-items: flex-start;
+		margin: 0 100px 40px 100px;
+	}
 	.photographer_section {
 		grid-template-columns: 1fr 1fr 1fr;
 		gap: 70px;
@@ -42,5 +46,39 @@ li {
 	}
 	.photograph-header {
 		margin: 0 100px;
+		grid-template-columns: 1fr 1fr 1fr;
+		padding: 2em;
+	}
+	.photograph-header .photograph-header__content {
+		min-width: 290px;
+		align-items: start;
+	}
+
+	.photograph-header .photograph-header__info {
+		position: fixed;
+		bottom: 1.5em;
+		right: 0;
+		max-width: 380px;
+	}
+	.photograph-media {
+		margin-top: 2em;
+	}
+
+	.photograph-media .photograph-header__thumbnails {
+		justify-content: flex-start;
+		width: auto;
+		margin: 40px 100px;
+	}
+
+	.photograph-media .photograph-header__thumbTitle {
+		align-items: start;
+	}
+	.photograph-media .photograph-header__thumbTitle span {
+		padding-top: 0.4em;
+	}
+
+	.photograph-media__scroller {
+		grid-auto-columns: 33%;
+		gap: 0.5em;
 	}
 }
