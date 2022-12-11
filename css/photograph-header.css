@@ -93,14 +93,28 @@
 	margin-left: 1em;
 	color: white;
 	background-color: #901c1c;
-	padding: 1em;
+	padding: 0.6em 1em;
 	border-radius: 5px;
+	overflow-y: hidden;
+	height: 47px;
+	transition: height 450ms ease-in-out;
+}
+
+.photograph-header .photograph-header__thumbTitle .open-list {
+	height: 125px;
 }
 
 .photograph-header .photograph-header__thumbTitle li {
 	padding: 0.5em;
 	font-weight: 400;
-	border-bottom: 1px solid white;
+	border-bottom: 1px solid transparent;
+	cursor: pointer;
+}
+
+.photograph-header .photograph-header__thumbTitle .open-item {
+	transform: rotate(180deg);
+	padding-right: 1.5em;
+	padding-left: 0;
 }
 
 .photograph-header__thumbTitle li:first-child {
@@ -108,5 +122,7 @@
 }
 
 .photograph-header__thumbTitle li img {
-	padding: 0 0.5em;
+	padding-left: 1.5em;
+	transform: rotate(0);
+	transition: all 450ms ease-in-out;
 }
