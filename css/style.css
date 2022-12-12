@@ -77,8 +77,13 @@ li {
 		padding-top: 0.4em;
 	}
 
+	.photograph-media .photograph-media__thumbnails {
+		padding: 10px 100px;
+	}
+
 	.photograph-media__scroller {
-		grid-auto-columns: 33%;
-		gap: 0.5em;
+		grid-template-columns: 1fr 1fr 1fr;
+		grid-auto-flow: unset;
+		gap: 2em;
 	}
 }

@@ -10,12 +10,9 @@ async function getPhotographers() {
     */
 
 	try {
-		const res = await fetch('../../data/photographers.json')
-		/*
-		const res = await fetch(
-		"http://127.0.0.1:5500/Front-End-Fisheye/data/photographers.json"
-		)
-		*/
+		const url =
+			'https://lostmart.github.io/Front-End-Fisheye/data/photographers.json'
+		const res = await fetch(url)
 		const photographers = await res.json()
 		return photographers
 	} catch (err) {
