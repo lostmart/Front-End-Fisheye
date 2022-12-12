@@ -49,6 +49,6 @@ class Photographer {
 		this.place = city + ', ' + country ?? null
 		this.tagline = tagline ?? null
 		this.price = price + '€/jour' ?? null
-		this.linkUrl = '/photographer.html?id=' + id ?? null
+		this.linkUrl = './photographer.html?id=' + id ?? null
 	}
 }
