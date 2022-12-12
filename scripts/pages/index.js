@@ -1,4 +1,7 @@
 import getData from '../factories/getData.js'
+import photographerFactory from '../factories/photographer.js'
+import Photographer from '../factories/photographerClass.js'
+
 const url =
 	'https://lostmart.github.io/Front-End-Fisheye/data/photographers.json'
 
@@ -22,7 +25,6 @@ async function init() {
 	// Récupère les datas des photographes
 	const { photographers } = await newBroughtData
 	displayData(photographers)
-	// console.log(photographers)
 }
 
 init()

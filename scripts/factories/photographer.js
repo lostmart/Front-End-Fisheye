@@ -1,6 +1,7 @@
-function photographerFactory(data) {
-	const { name, portrait, place, tagline, price, linkUrl } = data
+import { getImage, textBlock } from '../factories/createDomElems.js'
 
+export default function photographerFactory(data) {
+	const { name, portrait, place, tagline, price, linkUrl } = data
 	const picture = `assets/photographers/${portrait}`
 
 	function getUserCardDOM() {
@@ -25,30 +26,5 @@ function photographerFactory(data) {
 		return article
 	}
 
-	// create an image
-	function getImage(name, picture) {
-		const img = document.createElement('img')
-		img.setAttribute('src', picture)
-		img.setAttribute('alt', name)
-		return img
-	}
-
-	// create block of text
-	function textBlock(type, content) {
-		const h2 = document.createElement(type)
-		h2.textContent = content
-		return h2
-	}
-	return { name, picture, getUserCardDOM }
-}
-
-class Photographer {
-	constructor({ name, portrait, city, country, tagline, price, id }) {
-		this.name = name ?? null
-		this.portrait = portrait ?? null
-		this.place = city + ', ' + country ?? null
-		this.tagline = tagline ?? null
-		this.price = price + '€/jour' ?? null
-		this.linkUrl = './photographer.html?id=' + id ?? null
-	}
+	return { name, portrait, place, tagline, price, linkUrl, getUserCardDOM }
 }
