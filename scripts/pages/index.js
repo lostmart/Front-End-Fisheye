@@ -1,26 +1,10 @@
-async function getPhotographers() {
-	// Ceci est un exemple de données pour avoir un affichage de photographes de test dès le démarrage du projet,
-	// mais il sera à remplacer avec une requête sur le fichier JSON en utilisant "fetch".
+import getData from '../factories/getData.js'
+const url =
+	'https://lostmart.github.io/Front-End-Fisheye/data/photographers.json'
 
-	/*
-	// et bien retourner le tableau photographers seulement une fois récupéré
-	return {
-		photographers: [...photographers, ...photographers, ...photographers],
-	}
-    */
-
-	try {
-		const url =
-			'https://lostmart.github.io/Front-End-Fisheye/data/photographers.json'
-		const res = await fetch(url)
-		const photographers = await res.json()
-		return photographers
-	} catch (err) {
-		//console.log(err.message, 'tengo mucho miedo')
-		alert("couldn't retreive data from server ... ")
-		console.log(err.message)
-	}
-}
+/* new instance of getData() return the data from the server */
+const newfetch = new getData(url)
+const newBroughtData = await newfetch.brigMeData()
 
 async function displayData(photographers) {
 	const photographersSection = document.querySelector('.photographer_section')
@@ -36,9 +20,9 @@ async function displayData(photographers) {
 
 async function init() {
 	// Récupère les datas des photographes
-	const { photographers } = await getPhotographers()
+	const { photographers } = await newBroughtData
 	displayData(photographers)
-	console.log(photographers)
+	// console.log(photographers)
 }
 
 init()

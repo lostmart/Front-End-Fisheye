@@ -1,4 +1,7 @@
 //Mettre le code JavaScript lié à la page photographer.html
+import getData from '../factories/getData.js'
+const url =
+	'https://lostmart.github.io/Front-End-Fisheye/data/photographers.json'
 
 // DOM slements
 const toggleBtn = document.querySelectorAll('li')[0]
@@ -31,4 +34,16 @@ function closeList() {
 	toggleBtn.style.borderBottomColor = 'transparent'
 	listUl.childNodes[3].style.borderBottomColor = 'transparent'
 	openList = false
+}
+
+/* data manipulation */
+const newData = new getData(url)
+const data = await newData.brigMeData()
+console.log(data.media)
+
+async function init() {
+	// Récupère les datas des photographes
+	const { photographers } = await newBroughtData
+	displayData(photographers)
+	console.log(photographers)
 }
