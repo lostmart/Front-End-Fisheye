@@ -7,7 +7,9 @@ import {
 	getContElemCont,
 } from '../factories/createDomElems.js'
 /* create photographer based in class  */
-import Photographer from '../factories/photographerClass.js'
+import Photographer from '../classes/photographerClass.js'
+/* create photographer based in class  */
+import MediaData from '../classes/mediaClass.js'
 
 const url =
 	'https://lostmart.github.io/Front-End-Fisheye/data/photographers.json'
@@ -50,6 +52,8 @@ function closeList() {
 }
 
 /* data manipulation */
+const urlParams = new URLSearchParams(window.location.search)
+const usersId = urlParams.get('id')
 
 async function init() {
 	// Récupère les datas des photographes et media
@@ -57,12 +61,16 @@ async function init() {
 	const { media, photographers } = await newData.brigMeData()
 	// console.log(media, photographers)
 	rederDataDom(photographers)
+	const filteredPhotos = arrangeData(media)
+	console.log(filteredPhotos)
+	//const newdata = new MediaData(media[0])
+	//console.log(newdata)
 }
 
 function rederDataDom(photographers) {
 	// creation
 	const photographerModel = photographerFactory(
-		new Photographer(photographers[0])
+		new Photographer(photographers[3])
 	)
 	const picture = `assets/photographers/${photographerModel.portrait}`
 	const photographHeader = getContElemCont('section', 'photograph-header')
@@ -119,6 +127,14 @@ function rederDataDom(photographers) {
 	photographHeader.appendChild(photographHeader__info)
 	mainCont.appendChild(photographHeader)
 	mainCont.appendChild(photographMedia)
+}
+
+function arrangeData(media) {
+	console.log(media)
+	const filteredPhotos = media.filter(
+		(photo) => photo.photographerId == usersId
+	)
+	return filteredPhotos
 }
 
 init()

@@ -1,7 +1,7 @@
 import { getImage, textBlock } from '../factories/createDomElems.js'
 
-export default function photographerFactory(data) {
-	const { name, portrait, place, tagline, price, linkUrl } = data
+export default function photographerFactory(newPhotographer) {
+	const { name, portrait, place, tagline, price, linkUrl } = newPhotographer
 	const picture = `assets/photographers/${portrait}`
 
 	function getUserCardDOM() {

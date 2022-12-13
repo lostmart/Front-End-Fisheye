@@ -6,5 +6,10 @@ export default class Photographer {
 		this.tagline = tagline ?? null
 		this.price = price + '€/jour' ?? null
 		this.linkUrl = './photographer.html?id=' + id ?? null
+		this.id = id
+	}
+
+	getLinkUrl() {
+		return true
 	}
 }
