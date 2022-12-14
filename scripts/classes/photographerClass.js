@@ -1,5 +1,5 @@
 export default class Photographer {
-	constructor({ name, portrait, city, country, tagline, price, id }) {
+	constructor({ name, portrait, city, country, tagline, price, id, likes }) {
 		this.name = name ?? null
 		this.portrait = portrait ?? null
 		this.place = city + ', ' + country ?? null
@@ -7,6 +7,7 @@ export default class Photographer {
 		this.price = price + '€/jour' ?? null
 		this.linkUrl = './photographer.html?id=' + id ?? null
 		this.id = id
+		this.likes = likes
 	}
 
 	getLinkUrl() {

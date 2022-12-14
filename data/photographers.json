@@ -7,7 +7,8 @@
 			"country": "UK",
 			"tagline": "Voir le beau dans le quotidien",
 			"price": 400,
-			"portrait": "MimiKeel.jpg"
+			"portrait": "MimiKeel.jpg",
+			"likes": 801
 		},
 		{
 			"name": "Ellie-Rose Wilkens",
@@ -16,7 +17,8 @@
 			"country": "France",
 			"tagline": "Capturer des compositions complexes",
 			"price": 250,
-			"portrait": "EllieRoseWilkens.jpg"
+			"portrait": "EllieRoseWilkens.jpg",
+			"likes": 493
 		},
 		{
 			"name": "Tracy Galindo",
@@ -25,7 +27,8 @@
 			"country": "Canada",
 			"tagline": "Photographe freelance",
 			"price": 500,
-			"portrait": "TracyGalindo.jpg"
+			"portrait": "TracyGalindo.jpg",
+			"likes": 541
 		},
 		{
 			"name": "Nabeel Bradford",
@@ -34,7 +37,8 @@
 			"country": "Mexico",
 			"tagline": "Toujours aller de l'avant",
 			"price": 350,
-			"portrait": "NabeelBradford.jpg"
+			"portrait": "NabeelBradford.jpg",
+			"likes": 384
 		},
 		{
 			"name": "Rhode Dubois",
@@ -43,7 +47,8 @@
 			"country": "Spain",
 			"tagline": "Je crée des souvenirs",
 			"price": 275,
-			"portrait": "RhodeDubois.jpg"
+			"portrait": "RhodeDubois.jpg",
+			"likes": 745
 		},
 		{
 			"name": "Marcel Nikolic",
@@ -52,7 +57,8 @@
 			"country": "Germany",
 			"tagline": "Toujours à la recherche de LA photo",
 			"price": 300,
-			"portrait": "MarcelNikolic.jpg"
+			"portrait": "MarcelNikolic.jpg",
+			"likes": 397
 		}
 	],
 	"media": [
@@ -118,7 +124,7 @@
 			"likes": 24,
 			"date": "2011-12-08",
 			"price": 100
-		  },
+		},
 		{
 			"id": 7502053,
 			"photographerId": 82,
@@ -390,7 +396,7 @@
 			"likes": 142,
 			"date": "2019-08-23",
 			"price": 60
-		  },
+		},
 		{
 			"id": 95234343,
 			"photographerId": 243,
@@ -481,7 +487,7 @@
 			"likes": 57,
 			"date": "2020-01-20",
 			"price": 65
-		  },
+		},
 		{
 			"id": 3523523534,
 			"photographerId": 195,
@@ -499,7 +505,7 @@
 			"likes": 150,
 			"date": "2018-02-30",
 			"price": 70
-		  },
+		},
 		{
 			"id": 235234343,
 			"photographerId": 930,
