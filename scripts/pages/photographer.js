@@ -1,24 +1,24 @@
 //Mettre le code JavaScript lié à la page photographer.html
-import getData from '../factories/getData.js'
-import photographerFactory from '../factories/photographer.js'
+import getData from "../factories/getData.js"
+import photographerFactory from "../factories/photographer.js"
 import {
 	getImage,
 	textBlock,
 	getContElemCont,
-} from '../factories/createDomElems.js'
+} from "../factories/createDomElems.js"
 /* create photographer based in class  */
-import Photographer from '../classes/photographerClass.js'
+import Photographer from "../classes/photographerClass.js"
 /* create photographer based in class  */
-import MediaData from '../classes/mediaClass.js'
+import MediaData from "../classes/mediaClass.js"
 
 const url =
-	'https://lostmart.github.io/Front-End-Fisheye/data/photographers.json'
+	"https://lostmart.github.io/Front-End-Fisheye/data/photographers.json"
 
 // DOM slements
-const mainCont = document.querySelector('#main')
-const toggleBtn = document.querySelectorAll('li')[0]
-const listUl = document.querySelectorAll('ul')[0]
-const bodyClick = document.querySelector('body')
+const mainCont = document.querySelector("#main")
+const toggleBtn = document.querySelectorAll("li")[0]
+const listUl = document.querySelectorAll("ul")[0]
+const bodyClick = document.querySelector("body")
 
 let openList = false
 /*
@@ -37,81 +37,84 @@ toggleBtn.addEventListener('click', (e) => {
 })
 */
 
-bodyClick.addEventListener('click', () => {
+bodyClick.addEventListener("click", () => {
 	if (openList === true) {
 		closeList()
 	}
 })
 
 function closeList() {
-	listUl.classList.remove('open-list')
-	toggleBtn.childNodes[1].classList.remove('open-item')
-	toggleBtn.style.borderBottomColor = 'transparent'
-	listUl.childNodes[3].style.borderBottomColor = 'transparent'
+	listUl.classList.remove("open-list")
+	toggleBtn.childNodes[1].classList.remove("open-item")
+	toggleBtn.style.borderBottomColor = "transparent"
+	listUl.childNodes[3].style.borderBottomColor = "transparent"
 	openList = false
 }
 
 /* data manipulation */
 const urlParams = new URLSearchParams(window.location.search)
-const usersId = urlParams.get('id')
+const usersId = urlParams.get("id")
+
+function selectedPhotographer(photographers) {
+	return photographers.find((e) => e.id == usersId)
+}
 
 async function init() {
 	// Récupère les datas des photographes et media
 	const newData = new getData(url)
 	const { media, photographers } = await newData.brigMeData()
-	// console.log(media, photographers)
-	rederDataDom(photographers)
+
+	rederDataDom(selectedPhotographer(photographers))
 	const filteredPhotos = arrangeData(media)
-	console.log(filteredPhotos)
+	// console.log(filteredPhotos)
+	populateMediaScroll(filteredPhotos)
 	//const newdata = new MediaData(media[0])
 	//console.log(newdata)
 }
 
-function rederDataDom(photographers) {
+function rederDataDom(photographer) {
 	// creation
-	const photographerModel = photographerFactory(
-		new Photographer(photographers[3])
-	)
+	const photographerModel = photographerFactory(new Photographer(photographer))
 	const picture = `assets/photographers/${photographerModel.portrait}`
-	const photographHeader = getContElemCont('section', 'photograph-header')
+	const photographHeader = getContElemCont("section", "photograph-header")
 	const photographHeader__content = getContElemCont(
-		'div',
-		'photograph-header__content'
+		"div",
+		"photograph-header__content"
 	)
-	const photographHeader__title = textBlock('h2', photographerModel.name)
-	const contactBtn = getContElemCont('button', 'contact_button')
-	const photographHeader__location = textBlock('p', photographerModel.place)
-	const photographHeader__tag = textBlock('p', photographerModel.tagline)
+	const photographHeader__title = textBlock("h2", photographerModel.name)
+	const contactBtn = getContElemCont("button", "contact_button")
+	const photographHeader__location = textBlock("p", photographerModel.place)
+	const photographHeader__tag = textBlock("p", photographerModel.tagline)
 	const photographHeader__imgCont = getContElemCont(
-		'div',
-		'photograph-header__imgCont'
+		"div",
+		"photograph-header__imgCont"
 	)
 	const photographerHeader_img = getImage(photographerModel.name, picture)
 
 	const photographHeader__info = getContElemCont(
-		'div',
-		'photograph-header__info'
+		"div",
+		"photograph-header__info"
 	)
 	const photographHeader__likes = getContElemCont(
-		'span',
-		'photograph-header__likes'
+		"span",
+		"photograph-header__likes"
 	)
-	const heartIcon = getImage('likes', './assets/icons/heart.svg')
-	const photographMedia = getContElemCont('div', 'photograph-media')
-	photographMedia.innerHTML = '<h2>La medialuna deliciosa!</h2>'
+	const heartIcon = getImage("likes", "./assets/icons/heart.svg")
+	const photographMedia = getContElemCont("div", "photograph-media")
+	photographMedia.innerHTML = "<h2>La medialuna deliciosa!</h2>"
 
 	// preparation
-	contactBtn.textContent = 'Contactez-moi'
-	contactBtn.setAttribute('onclick', 'displayModal()')
-	photographHeader__location.classList.add('photograph-header__location')
-	photographHeader__tag.classList.add('photograph-header__tag')
-	photographHeader__info.classList.add('photograph-header__info')
+	contactBtn.textContent = "Contactez-moi"
+	contactBtn.setAttribute("onclick", "displayModal()")
+	photographHeader__location.classList.add("photograph-header__location")
+	photographHeader__tag.classList.add("photograph-header__tag")
+	photographHeader__info.classList.add("photograph-header__info")
 
-	const spanLikes = document.createElement('span')
-	spanLikes.innerHTML = '297&nbsp;081'
+	const spanLikes = document.createElement("span")
+	spanLikes.innerHTML = "297&nbsp;081"
 	photographHeader__likes.appendChild(spanLikes)
 	photographHeader__likes.appendChild(heartIcon)
-	const spanPrice = document.createElement('span')
+	const spanPrice = document.createElement("span")
 	spanPrice.textContent = photographerModel.price
 
 	// append
@@ -129,8 +132,13 @@ function rederDataDom(photographers) {
 	mainCont.appendChild(photographMedia)
 }
 
+function populateMediaScroll(filteredPhotos) {
+	// photographMedia.innerHTML = "<h2>La medialuna deliciosa!</h2>"
+	console.log(filteredPhotos)
+}
+
 function arrangeData(media) {
-	console.log(media)
+	// console.log(media)
 	const filteredPhotos = media.filter(
 		(photo) => photo.photographerId == usersId
 	)
