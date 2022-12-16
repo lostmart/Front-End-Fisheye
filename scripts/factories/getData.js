@@ -6,7 +6,7 @@ function getData(url) {
 		try {
 			const res = await fetch(url)
 			const photographers = await res.json()
-			console.log(photographers)
+			// console.log(photographers)
 			return photographers
 		} catch (err) {
 			//console.log(err.message, 'tengo mucho miedo')

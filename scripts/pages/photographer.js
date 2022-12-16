@@ -1,5 +1,6 @@
 //Mettre le code JavaScript lié à la page photographer.html
 import getData from '../factories/getData.js'
+import mediaFactory from '../factories/media.js'
 import photographerFactory from '../factories/photographer.js'
 import {
 	getImage,
@@ -55,6 +56,7 @@ function closeList() {
 const urlParams = new URLSearchParams(window.location.search)
 const usersId = urlParams.get('id')
 
+/* return selected photographer */
 function selectedPhotographer(photographers) {
 	return photographers.find((e) => e.id == usersId)
 }
@@ -64,14 +66,25 @@ async function init() {
 	const newData = new getData(url)
 	const { media, photographers } = await newData.brigMeData()
 
-	rederDataDom(selectedPhotographer(photographers))
+	// rederDataDom(selectedPhotographer(photographers))
+	// new oobject from photographer class
+
+	const photographerModel = photographerFactory(
+		new Photographer(selectedPhotographer(photographers))
+	)
+	photographerModel.singlePageHeader(photographerModel, mainCont)
+
+	// const photographer = new mediaFactory(photographers[0])
+	// photographer.photographHeader()
+
 	const filteredPhotos = arrangeData(media)
-	// console.log(filteredPhotos)
-	populateMediaScroll(filteredPhotos)
+	console.log(filteredPhotos)
+	// populateMediaScroll(filteredPhotos)
 	//const newdata = new MediaData(media[0])
 	//console.log(newdata)
 }
 
+/*
 function rederDataDom(photographer) {
 	// console.log(photographer)
 	// creation
@@ -101,8 +114,7 @@ function rederDataDom(photographer) {
 		'photograph-header__likes'
 	)
 	const heartIcon = getImage('likes', './assets/icons/heart.svg')
-	const photographMedia = getContElemCont('div', 'photograph-media')
-	photographMedia.innerHTML = '<h2>La medialuna deliciosa!</h2>'
+	const photographMedia = getContElemCont('section', 'photograph-media')
 
 	// preparation
 	contactBtn.textContent = 'Contactez-moi'
@@ -112,7 +124,7 @@ function rederDataDom(photographer) {
 	photographHeader__info.classList.add('photograph-header__info')
 
 	const spanLikes = document.createElement('span')
-	spanLikes.innerHTML = '297&nbsp;081'
+	spanLikes.innerHTML = photographerModel.likes
 	photographHeader__likes.appendChild(spanLikes)
 	photographHeader__likes.appendChild(heartIcon)
 	const spanPrice = document.createElement('span')
@@ -133,9 +145,39 @@ function rederDataDom(photographer) {
 	mainCont.appendChild(photographMedia)
 }
 
+*/
 function populateMediaScroll(filteredPhotos) {
-	// photographMedia.innerHTML = "<h2>La medialuna deliciosa!</h2>"
-	console.log(filteredPhotos)
+	const photographMedia = document.querySelector('.photograph-media')
+	const photographHeader__content = getContElemCont(
+		'article',
+		'photograph-media__card'
+	)
+	const link = document.createElement('a')
+	link.setAttribute('href', 'javascript:void(0)')
+	link.setAttribute('onclick', 'displayGallery()')
+
+	const photographMedia__imgCont = getContElemCont(
+		'div',
+		'photograph-media__imgCont'
+	)
+	const imgUrl = `assets/images/Mimi/${filteredPhotos[0].image}`
+	const img = getImage(filteredPhotos[0].title, imgUrl)
+
+	photographMedia__imgCont.appendChild(img)
+	link.appendChild(photographMedia__imgCont)
+
+	const photoMedia__text = getContElemCont('div', 'photo-media__text')
+	photoMedia__text.appendChild(textBlock('h2', filteredPhotos[0].title))
+	const div = document.createElement('div')
+	div.appendChild(textBlock('span', filteredPhotos[0].likes))
+	photoMedia__text.appendChild(div)
+	div.appendChild(getImage('likes', './assets/icons/heart-red.svg'))
+	photoMedia__text.appendChild(div)
+	link.appendChild(photoMedia__text)
+	photographHeader__content.appendChild(link)
+	photographMedia.appendChild(photographHeader__content)
+
+	console.log(photographHeader__content)
 }
 
 function arrangeData(media) {

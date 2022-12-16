@@ -9,8 +9,4 @@ export default class Photographer {
 		this.id = id
 		this.likes = likes
 	}
-
-	getLinkUrl() {
-		return true
-	}
 }

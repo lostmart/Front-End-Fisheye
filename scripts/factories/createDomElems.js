@@ -1,5 +1,5 @@
 // create an image
-// first param: name(al text) - second: image source(url)
+// first param: name(alt text) - second: image source(url)
 export function getImage(name, picture) {
 	const img = document.createElement('img')
 	img.setAttribute('src', picture)
