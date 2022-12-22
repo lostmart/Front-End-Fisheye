@@ -10,7 +10,6 @@ export default class Photo {
 		this.video = video ?? null
 	}
 	folderName() {
-		console.log(this.photographerId)
 		let folder = ''
 		switch (this.photographerId) {
 			case 930:
