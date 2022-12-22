@@ -78,8 +78,14 @@
 	align-items: center;
 }
 
+.photograph-header .photograph-header__likes span {
+	display: block;
+	width: 64px;
+}
+
 .photograph-header .photograph-header__likes img {
 	margin-left: 0.5em;
+	max-width: 24px;
 }
 
 /*   PHTOTOGRAPH MEDIA   */

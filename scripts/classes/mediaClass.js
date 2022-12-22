@@ -1,15 +1,13 @@
 export default class Photo {
-	constructor({ id, photographerId, title, image, likes, date, price }) {
+	constructor({ id, photographerId, title, image, likes, date, price, video }) {
 		this.id = id
-		this.photographerId = photographerId
-		this.title = title
-		this.image = image
-		this.likes = likes
-		this.date = date
-		this.price = price
-	}
-	displayInfo() {
-		console.log(`the title is: ${this.title}`)
+		this.photographerId = photographerId ?? null
+		this.title = title ?? null
+		this.image = image ?? null
+		this.likes = likes ?? null
+		this.date = date ?? null
+		this.price = price ?? null
+		this.video = video ?? null
 	}
 	folderName() {
 		console.log(this.photographerId)
