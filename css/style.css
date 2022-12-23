@@ -81,9 +81,8 @@ li {
 		padding: 10px 100px;
 	}
 
-	.photograph-media__scroller {
-		grid-template-columns: 1fr 1fr 1fr;
-		grid-auto-flow: unset;
-		gap: 2em;
+	.photograph-media__card .photograph-media__imgCont {
+		width: 24.304vw;
+		aspect-ratio: 7/6;
 	}
 }

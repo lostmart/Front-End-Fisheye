@@ -1,5 +1,5 @@
-import { getImage, textBlock } from "../factories/createDomElems.js"
-import { getContElemCont } from "./createDomElems.js"
+import { getImage, textBlock } from '../factories/createDomElems.js'
+import { getContElemCont } from './createDomElems.js'
 
 export default function photographerFactory(newPhotographer) {
 	const { name, portrait, place, tagline, price, linkUrl, likes } =
@@ -8,22 +8,22 @@ export default function photographerFactory(newPhotographer) {
 	// console.log(linkUrl)
 
 	function getUserCardDOM() {
-		const article = document.createElement("article")
-		const imgCont = document.createElement("div")
-		const link = document.createElement("a")
-		const list = document.createElement("ul")
+		const article = document.createElement('article')
+		const imgCont = document.createElement('div')
+		const link = document.createElement('a')
+		const list = document.createElement('ul')
 
-		link.setAttribute("href", linkUrl)
-		imgCont.classList.add("photographer_section__imgCont")
+		link.setAttribute('href', linkUrl)
+		imgCont.classList.add('photographer_section__imgCont')
 		imgCont.appendChild(getImage(name, picture))
 
 		link.appendChild(imgCont)
-		link.appendChild(textBlock("h2", name))
+		link.appendChild(textBlock('h2', name))
 
 		article.appendChild(link)
-		list.appendChild(textBlock("li", place))
-		list.appendChild(textBlock("li", tagline))
-		list.appendChild(textBlock("li", price))
+		list.appendChild(textBlock('li', place))
+		list.appendChild(textBlock('li', tagline))
+		list.appendChild(textBlock('li', price))
 		article.appendChild(list)
 
 		return article
@@ -31,44 +31,44 @@ export default function photographerFactory(newPhotographer) {
 
 	function singlePageHeader(photographerModel, mainCont) {
 		const picture = `assets/photographers/${photographerModel.portrait}`
-		const photographHeader = getContElemCont("section", "photograph-header")
+		const photographHeader = getContElemCont('section', 'photograph-header')
 		const photographHeader__content = getContElemCont(
-			"div",
-			"photograph-header__content"
+			'div',
+			'photograph-header__content'
 		)
-		const photographHeader__title = textBlock("h2", photographerModel.name)
-		const contactBtn = getContElemCont("button", "contact_button")
-		const photographHeader__location = textBlock("p", photographerModel.place)
-		const photographHeader__tag = textBlock("p", photographerModel.tagline)
+		const photographHeader__title = textBlock('h2', photographerModel.name)
+		const contactBtn = getContElemCont('button', 'contact_button')
+		const photographHeader__location = textBlock('p', photographerModel.place)
+		const photographHeader__tag = textBlock('p', photographerModel.tagline)
 		const photographHeader__imgCont = getContElemCont(
-			"div",
-			"photograph-header__imgCont"
+			'div',
+			'photograph-header__imgCont'
 		)
 		const photographerHeader_img = getImage(photographerModel.name, picture)
 
 		const photographHeader__info = getContElemCont(
-			"div",
-			"photograph-header__info"
+			'div',
+			'photograph-header__info'
 		)
 		const photographHeader__likes = getContElemCont(
-			"span",
-			"photograph-header__likes"
+			'span',
+			'photograph-header__likes'
 		)
-		const heartIcon = getImage("likes", "./assets/icons/heart.svg")
-		const photographMedia = getContElemCont("section", "photograph-media")
+		const heartIcon = getImage('likes', './assets/icons/heart.svg')
+		const photographMedia = getContElemCont('section', 'photograph-media')
 
 		// preparation
-		contactBtn.textContent = "Contactez-moi"
-		contactBtn.setAttribute("onclick", "displayModal()")
-		photographHeader__location.classList.add("photograph-header__location")
-		photographHeader__tag.classList.add("photograph-header__tag")
-		photographHeader__info.classList.add("photograph-header__info")
+		contactBtn.textContent = 'Contactez-moi'
+		contactBtn.setAttribute('onclick', 'displayModal()')
+		photographHeader__location.classList.add('photograph-header__location')
+		photographHeader__tag.classList.add('photograph-header__tag')
+		photographHeader__info.classList.add('photograph-header__info')
 
-		const spanLikes = document.createElement("span")
+		const spanLikes = document.createElement('span')
 		spanLikes.innerHTML = photographerModel.likes
 		photographHeader__likes.appendChild(spanLikes)
 		photographHeader__likes.appendChild(heartIcon)
-		const spanPrice = document.createElement("span")
+		const spanPrice = document.createElement('span')
 		spanPrice.textContent = photographerModel.price
 
 		// append

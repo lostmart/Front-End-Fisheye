@@ -59,7 +59,7 @@ export default function mediaFactory(media, usersId) {
 	/* this fn instantiates each photo obj and pushes it to the modelPhotosArray  */
 	arrayModel()
 
-	console.log(modelPhotosArray)
+	// console.log(modelPhotosArray)
 
 	return {
 		modelPhotosArray,

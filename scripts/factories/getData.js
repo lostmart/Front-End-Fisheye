@@ -9,7 +9,6 @@ function getData(url) {
 			// console.log(photographers)
 			return photographers
 		} catch (err) {
-			//console.log(err.message, 'tengo mucho miedo')
 			alert("couldn't retreive data from server ... ")
 			console.log(err.message)
 		}
