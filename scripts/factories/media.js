@@ -1,5 +1,5 @@
-import Photographer from '../classes/photographerClass.js'
-import Photo from '../classes/mediaClass.js'
+import Photographer from "../classes/photographerClass.js"
+import Photo from "../classes/mediaClass.js"
 
 /*  factory fn: accepts an Array:["media"] and a String:"userId"  */
 export default function mediaFactory(media, usersId) {

@@ -1,9 +1,9 @@
 // create an image
 // first arg: name(alt text) - second: image source(url)
 export function getImage(name, picture) {
-	const img = document.createElement('img')
-	img.setAttribute('src', picture)
-	img.setAttribute('alt', name)
+	const img = document.createElement("img")
+	img.setAttribute("src", picture)
+	img.setAttribute("alt", name)
 	return img
 }
 
@@ -22,48 +22,53 @@ export function getContElemCont(elemTyp, className) {
 }
 
 // creates a card container
-export function photoCard(selectedPic) {
+export function photoCard(selectedPic, indx) {
 	const { image } = selectedPic
 
-	const link = document.createElement('a')
-	link.setAttribute('href', 'javascript:void(0)')
-	link.setAttribute('onclick', 'displayGallery()')
+	const link = document.createElement("a")
+	link.setAttribute("href", "javascript:void(0)")
 
 	const photographHeader__content = getContElemCont(
-		'article',
-		'photograph-media__card'
+		"article",
+		"photograph-media__card"
 	)
 
 	const photographMedia__imgCont = getContElemCont(
-		'div',
-		'photograph-media__imgCont'
+		"div",
+		"photograph-media__imgCont"
 	)
 	if (image) {
 		const imgUrl = `assets/${selectedPic.folderName()}${selectedPic.image}`
 		const img = getImage(selectedPic.title, imgUrl)
+		img.dataset.indxNo = indx
 		photographMedia__imgCont.appendChild(img)
 	} else {
 		const videoUrl = `assets/${selectedPic.folderName()}${selectedPic.video}`
-		const video = document.createElement('video')
-		const source = document.createElement('source')
+		const video = document.createElement("video")
+		const source = document.createElement("source")
 		source.src = videoUrl
 		video.appendChild(source)
 		photographMedia__imgCont.appendChild(video)
 	}
 
-	const photoMedia__text = getContElemCont('div', 'photo-media__text')
-	photoMedia__text.appendChild(textBlock('h2', selectedPic.title))
-	const div = document.createElement('div')
-	div.appendChild(textBlock('span', selectedPic.likes))
+	const photoMedia__text = getContElemCont("div", "photo-media__text")
+	photoMedia__text.appendChild(textBlock("h2", selectedPic.title))
+	const div = document.createElement("div")
+	div.appendChild(textBlock("span", selectedPic.likes))
 	photoMedia__text.appendChild(div)
 
-	div.appendChild(getImage('likes', './assets/icons/heart-red.svg'))
+	div.appendChild(getImage("likes", "./assets/icons/heart-red.svg"))
 	photoMedia__text.appendChild(div)
 
 	photographHeader__content.appendChild(photographMedia__imgCont)
 	photographHeader__content.appendChild(photoMedia__text)
 
 	link.appendChild(photographHeader__content)
+
+	link.addEventListener("click", (e) => {
+		const mediaIndx = e.target.getAttribute("data-indx-no")
+		console.log(mediaIndx)
+	})
 	// console.log(link)
 	return link
 }
