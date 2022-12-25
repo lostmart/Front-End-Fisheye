@@ -1,9 +1,9 @@
 @import url('photograph-header.css');
+@import url('photograph-full_screen_media.css');
 
 #contact_modal {
 	display: none;
 }
-
 
 .modal {
 	border-radius: 5px;

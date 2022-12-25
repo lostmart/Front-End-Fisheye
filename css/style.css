@@ -85,4 +85,16 @@ li {
 		width: 24.304vw;
 		aspect-ratio: 7/6;
 	}
+
+	.full_screen_media__carousel {
+		padding: 0.2em;
+	}
+
+	.full_screen_media__carousel-inner {
+		aspect-ratio: 14/12;
+	}
+
+	.full_screen_media__btn {
+		width: 96px;
+	}
 }

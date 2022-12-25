@@ -1,4 +1,8 @@
-import { getImage, textBlock } from '../factories/createDomElems.js'
+import {
+	getImage,
+	textBlock,
+	createCarousel,
+} from '../factories/createDomElems.js'
 import { getContElemCont } from './createDomElems.js'
 
 export default function photographerFactory(newPhotographer) {
@@ -85,6 +89,8 @@ export default function photographerFactory(newPhotographer) {
 		mainCont.appendChild(photographHeader)
 		mainCont.appendChild(photographMedia)
 	}
+
+	createCarousel()
 
 	return {
 		name,
