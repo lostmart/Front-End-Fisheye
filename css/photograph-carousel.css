@@ -4,8 +4,8 @@
 	background-color: white;
 	width: 100%;
 	height: 100vh;
-	display: flex;
-	align-items: center;
+	/* display: flex; */
+	display: none;
 	justify-content: center;
 	top: 0;
 	left: 0;
@@ -16,9 +16,9 @@
 .full_screen_media__carousel {
 	position: relative;
 	display: flex;
-	align-items: center;
 	justify-content: center;
 	padding: 0.2em;
+	margin-top: 0.5em;
 	width: 100%;
 }
 
@@ -50,7 +50,7 @@
 .full_screen_media__btn {
 	position: absolute;
 	right: 0.5em;
-	top: 50%;
+	top: 28%;
 	background-color: rgb(0, 0, 0, 0.07);
 	border: none;
 	width: 20px;

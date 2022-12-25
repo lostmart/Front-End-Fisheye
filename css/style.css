@@ -1,6 +1,6 @@
-@import url('header.css');
-@import url('photographer_section.css');
-@import url('photographer.css');
+@import url("header.css");
+@import url("photographer_section.css");
+@import url("photographer.css");
 
 * {
 	margin: 0;
@@ -9,7 +9,7 @@
 }
 
 body {
-	font-family: 'DM Sans', sans-serif;
+	font-family: "DM Sans", sans-serif;
 }
 
 img {
@@ -86,8 +86,14 @@ li {
 		aspect-ratio: 7/6;
 	}
 
+	.full_screen_media {
+		align-items: center;
+	}
+
 	.full_screen_media__carousel {
 		padding: 0.2em;
+		align-items: center;
+		margin-top: 0;
 	}
 
 	.full_screen_media__carousel-inner {
@@ -96,5 +102,6 @@ li {
 
 	.full_screen_media__btn {
 		width: 96px;
+		top: 50%;
 	}
 }

@@ -1,5 +1,5 @@
-@import url('photograph-header.css');
-@import url('photograph-full_screen_media.css');
+@import url("photograph-header.css");
+@import url("photograph-carousel.css");
 
 #contact_modal {
 	display: none;
