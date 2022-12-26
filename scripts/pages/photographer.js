@@ -1,22 +1,23 @@
 //Mettre le code JavaScript lié à la page photographer.html
-import getData from "../factories/getData.js"
-import mediaFactory from "../factories/media.js"
-import photographerFactory from "../factories/photographer.js"
+import getData from '../factories/getData.js'
+import mediaFactory from '../factories/media.js'
+import photographerFactory from '../factories/photographer.js'
 import {
 	getImage,
 	textBlock,
 	getContElemCont,
 	photoCard,
-} from "../factories/createDomElems.js"
+	createCarousel,
+} from '../factories/createDomElems.js'
 /* create photographer based in photographer class  */
-import Photographer from "../classes/photographerClass.js"
+import Photographer from '../classes/photographerClass.js'
 
 const url =
-	"https://lostmart.github.io/Front-End-Fisheye/data/photographers.json"
+	'https://lostmart.github.io/Front-End-Fisheye/data/photographers.json'
 
 // DOM slements
-const mainCont = document.querySelector("#main")
-const bodyClick = document.querySelector("body")
+const mainCont = document.querySelector('#main')
+const bodyClick = document.querySelector('body')
 
 let openList = false
 let opencarousel = false
@@ -37,23 +38,23 @@ toggleBtn.addEventListener('click', (e) => {
 })
 */
 
-bodyClick.addEventListener("click", () => {
+bodyClick.addEventListener('click', () => {
 	if (openList === true) {
 		closeList()
 	}
 })
 
 function closeList() {
-	listUl.classList.remove("open-list")
-	toggleBtn.childNodes[1].classList.remove("open-item")
-	toggleBtn.style.borderBottomColor = "transparent"
-	listUl.childNodes[3].style.borderBottomColor = "transparent"
+	listUl.classList.remove('open-list')
+	toggleBtn.childNodes[1].classList.remove('open-item')
+	toggleBtn.style.borderBottomColor = 'transparent'
+	listUl.childNodes[3].style.borderBottomColor = 'transparent'
 	openList = false
 }
 
 /* data manipulation */
 const urlParams = new URLSearchParams(window.location.search)
-const usersId = urlParams.get("id")
+const usersId = urlParams.get('id')
 
 /* return selected photographer */
 function selectedPhotographer(photographers) {
@@ -75,25 +76,25 @@ async function init() {
 	/*  creates an object with an array of all the needed photos
 	and three useful methods                             */
 	const photoModel = mediaFactory(media, usersId)
-	const photographMedia = document.querySelector(".photograph-media")
+	const photographMedia = document.querySelector('.photograph-media')
 	const photoMedia_thumbnails = getContElemCont(
-		"div",
-		"photograph-media__thumbnails"
+		'div',
+		'photograph-media__thumbnails'
 	)
 	const photographMediaThumbTitle = getContElemCont(
-		"div",
-		"photograph-media__thumbTitle"
+		'div',
+		'photograph-media__thumbTitle'
 	)
-	const span = textBlock("span", "Tirer par")
-	const ul = document.createElement("ul")
-	const list_one = document.createElement("li")
-	const list_img = getImage("open indicator", "./assets/icons/chev-down.svg")
+	const span = textBlock('span', 'Tirer par')
+	const ul = document.createElement('ul')
+	const list_one = document.createElement('li')
+	const list_img = getImage('open indicator', './assets/icons/chev-down.svg')
 
-	list_one.textContent = "Popularité"
+	list_one.textContent = 'Popularité'
 	list_one.appendChild(list_img)
 
-	const list_two = textBlock("li", "Date")
-	const list_three = textBlock("li", "Titre")
+	const list_two = textBlock('li', 'Date')
+	const list_three = textBlock('li', 'Titre')
 
 	ul.appendChild(list_one)
 	ul.appendChild(list_two)
@@ -103,8 +104,8 @@ async function init() {
 	photographMediaThumbTitle.appendChild(ul)
 
 	const photoMediaScroller = getContElemCont(
-		"div",
-		"photograph-media__scroller"
+		'div',
+		'photograph-media__scroller'
 	)
 
 	photoModel.modelPhotosArray.forEach((photo, indx) => {
@@ -118,20 +119,20 @@ async function init() {
 	photographMedia.appendChild(photoMedia_thumbnails)
 
 	createCarousel()
-	carousel = document.querySelector(".full_screen_media")
+	carousel = document.querySelector('.full_screen_media')
 	console.log(carousel)
-	carousel.style.display = "flex"
+	// carousel.style.display = "flex"
 
-	const toggleBtn = document.querySelectorAll("li")[0]
-	const listUl = document.querySelector("ul")
+	const toggleBtn = document.querySelectorAll('li')[0]
+	const listUl = document.querySelector('ul')
 
-	toggleBtn.addEventListener("click", (e) => {
+	toggleBtn.addEventListener('click', (e) => {
 		if (!openList) {
 			e.stopPropagation()
-			listUl.classList.add("open-list")
-			toggleBtn.childNodes[1].classList.add("open-item")
-			toggleBtn.style.borderBottomColor = "white"
-			listUl.childNodes[3].style.borderBottomColor = "white"
+			listUl.classList.add('open-list')
+			toggleBtn.childNodes[1].classList.add('open-item')
+			toggleBtn.style.borderBottomColor = 'white'
+			listUl.childNodes[3].style.borderBottomColor = 'white'
 			openList = true
 		} else {
 			closeList()
@@ -156,32 +157,33 @@ function populateMediaScroll(selectedPic) {
 	console.log(photographHeader__content)
 }
 
+/*
 function createCarousel() {
-	const full_screen_media = getContElemCont("div", "full_screen_media")
+	const full_screen_media = getContElemCont('div', 'full_screen_media')
 	const full_screen_media__carousel = getContElemCont(
-		"div",
-		"full_screen_media__carousel"
+		'div',
+		'full_screen_media__carousel'
 	)
 	const full_screen_media__carouselInner = getContElemCont(
-		"div",
-		"full_screen_media__carousel-inner"
+		'div',
+		'full_screen_media__carousel-inner'
 	)
-	const carouselItem = getContElemCont("div", "carousel-item")
+	const carouselItem = getContElemCont('div', 'carousel-item')
 	const carouselImg = getImage(
-		"teto",
-		"./assets/images/Mimi/Animals_Rainbow.jpg"
+		'teto',
+		'./assets/images/Mimi/Animals_Rainbow.jpg'
 	)
-	const closeBtn = getContElemCont("button", "full_screen_media__btn")
-	closeBtn.classList.add("full_screen_media__btn-close")
-	closeBtn.setAttribute("aria-label", "close")
-	const closeBtnImg = getImage("close carousel", "./assets/icons/close-red.svg")
+	const closeBtn = getContElemCont('button', 'full_screen_media__btn')
+	closeBtn.classList.add('full_screen_media__btn-close')
+	closeBtn.setAttribute('aria-label', 'close')
+	const closeBtnImg = getImage('close carousel', './assets/icons/close-red.svg')
 
-	const leftLink = getContElemCont("a", "full_screen_media__btn")
-	leftLink.classList.add("full_screen_media__btn-left")
-	leftLink.setAttribute("aria-label", "previous image")
+	const leftLink = getContElemCont('a', 'full_screen_media__btn')
+	leftLink.classList.add('full_screen_media__btn-left')
+	leftLink.setAttribute('aria-label', 'previous image')
 
-	const rightLink = getContElemCont("a", "full_screen_media__btn")
-	rightLink.setAttribute("aria-label", "next image")
+	const rightLink = getContElemCont('a', 'full_screen_media__btn')
+	rightLink.setAttribute('aria-label', 'next image')
 
 	closeBtn.appendChild(closeBtnImg)
 	carouselItem.appendChild(carouselImg)
@@ -194,5 +196,6 @@ function createCarousel() {
 	console.log(full_screen_media__carousel)
 	return full_screen_media
 }
+*/
 
 init()
