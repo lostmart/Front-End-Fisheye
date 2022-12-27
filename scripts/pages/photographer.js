@@ -144,11 +144,6 @@ async function init() {
 	//console.log(newdata)
 }
 
-// set one carousel item as active add class carousel-item-active
-function setActiveItem() {
-	console.log('acting ... ')
-}
-
 function populateMediaScroll(selectedPic) {
 	/* check this is not a video */
 

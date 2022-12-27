@@ -26,6 +26,7 @@
 	position: relative;
 	overflow: hidden;
 	aspect-ratio: 9/12;
+	min-width: 82%;
 }
 
 .carousel-item {
@@ -35,9 +36,10 @@
 	backface-visibility: hidden;
 	display: none;
 	transition: transform 0.6s ease-in-out;
+	width: 100%;
 }
 
-.carousel-item-active{
+.carousel-item-active {
 	display: block;
 }
 
@@ -55,7 +57,7 @@
 	right: 0.5em;
 	top: 50%;
 	transform: translateY(-50%);
-	background-color: rgb(0, 0, 0, 0.07);
+	background-color: rgb(255, 255, 255, 0.25);
 	border: none;
 	width: 20px;
 	padding: 0.5em 0.2em;

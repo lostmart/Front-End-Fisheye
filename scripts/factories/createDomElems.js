@@ -1,5 +1,6 @@
 let showCarousel = false
 let carousel = null
+let mediaIndx = null
 
 // create an image
 // first arg: name(alt text) - second: image source(url)
@@ -58,7 +59,7 @@ export function photoCard(selectedPic, indx) {
 	link.appendChild(photographHeader__content)
 
 	link.addEventListener('click', (e) => {
-		const mediaIndx = e.target.getAttribute('data-indx-no')
+		mediaIndx = e.target.getAttribute('data-indx-no')
 		toggleCarousel(mediaIndx)
 	})
 	// console.log(link)
@@ -77,10 +78,11 @@ export function createCarousel(elements) {
 		'div',
 		'full_screen_media__carousel-inner'
 	)
-	elements.forEach((pic) => {
+	elements.forEach((pic, i) => {
 		const carouselItem = getContElemCont('div', 'carousel-item')
 		const { image } = pic
-		const carouselItemReady = createMediaUrl(pic, image, 0, carouselItem)
+		const carouselItemReady = createMediaUrl(pic, image, i, carouselItem)
+
 		console.log(carouselItemReady)
 		full_screen_media__carouselInner.appendChild(carouselItemReady)
 	})
@@ -89,40 +91,39 @@ export function createCarousel(elements) {
 	closeBtn.classList.add('full_screen_media__btn-close')
 	closeBtn.setAttribute('aria-label', 'close')
 	const closeBtnImg = getImage('close carousel', './assets/icons/close-red.svg')
-	closeBtn.addEventListener('click', () => toggleCarousel(carousel))
-
-	const leftLink = getContElemCont('a', 'full_screen_media__btn')
-	leftLink.classList.add('full_screen_media__btn-left')
-	leftLink.setAttribute('aria-label', 'previous image')
-
-	const rightLink = getContElemCont('a', 'full_screen_media__btn')
-	rightLink.setAttribute('aria-label', 'next image')
-	rightLink.addEventListener('click', () => console.log('right btn ...'))
+	closeBtn.addEventListener('click', () => toggleCarousel())
 
 	closeBtn.appendChild(closeBtnImg)
 	full_screen_media__carousel.appendChild(full_screen_media__carouselInner)
 	full_screen_media__carousel.appendChild(closeBtn)
-	full_screen_media__carousel.appendChild(leftLink)
-	full_screen_media__carousel.appendChild(rightLink)
+	//full_screen_media__carousel.appendChild(leftLink)
+	//full_screen_media__carousel.appendChild(rightLink)
 	full_screen_media.appendChild(full_screen_media__carousel)
-	console.log(full_screen_media__carousel)
+	// console.log(full_screen_media__carousel)
 	carousel = full_screen_media
 	return full_screen_media
 }
 
-export function toggleCarousel(mediaIndx) {
-	console.log(mediaIndx)
+export function toggleCarousel() {
 	if (!showCarousel) {
+		setActiveItem()
 		carousel.style.display = 'flex'
 		showCarousel = true
 	} else {
 		carousel.style.display = 'none'
 		showCarousel = false
+		clearActiveItem()
 	}
 }
 
 function setActiveItem() {
-	console.log('acting ... ')
+	const selectedItem = document.querySelectorAll('.carousel-item')[mediaIndx]
+	selectedItem.style.display = 'block'
+}
+
+function clearActiveItem() {
+	const selectedItem = document.querySelectorAll('.carousel-item')[mediaIndx]
+	selectedItem.style.display = 'none'
 }
 
 // creates a media holder an image or video
@@ -131,7 +132,23 @@ function createMediaUrl(selectedPic, image, indx, element) {
 		const imgUrl = `assets/${selectedPic.folderName()}${selectedPic.image}`
 		const img = getImage(selectedPic.title, imgUrl)
 		img.dataset.indxNo = indx
+		const leftLink = getContElemCont('a', 'full_screen_media__btn')
+		const leftArrow = getImage('previous arrow', './assets/icons/arrow-red.svg')
+		leftLink.classList.add('full_screen_media__btn-left')
+		leftLink.setAttribute('aria-label', 'previous image')
+		leftLink.appendChild(leftArrow)
+		leftLink.addEventListener('click', () => console.log('left btn ...'))
+
+		const rightLink = getContElemCont('a', 'full_screen_media__btn')
+		const rightArrow = getImage('next arrow', './assets/icons/arrow-red.svg')
+		rightLink.setAttribute('aria-label', 'next image')
+		rightLink.appendChild(rightArrow)
+		rightLink.addEventListener('click', () => console.log('right btn ...'))
+
+		element.appendChild(leftLink)
 		element.appendChild(img)
+		element.appendChild(rightLink)
+
 		return element
 	} else {
 		const videoUrl = `assets/${selectedPic.folderName()}${selectedPic.video}`
