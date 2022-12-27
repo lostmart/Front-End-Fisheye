@@ -30,12 +30,15 @@
 
 .carousel-item {
 	position: relative;
-	/* display: none;
 	margin-right: -100%;
 	-webkit-backface-visibility: hidden;
 	backface-visibility: hidden;
-    */
+	display: none;
 	transition: transform 0.6s ease-in-out;
+}
+
+.carousel-item-active{
+	display: block;
 }
 
 .carousel-item-move {
@@ -50,7 +53,8 @@
 .full_screen_media__btn {
 	position: absolute;
 	right: 0.5em;
-	top: 28%;
+	top: 50%;
+	transform: translateY(-50%);
 	background-color: rgb(0, 0, 0, 0.07);
 	border: none;
 	width: 20px;
@@ -70,6 +74,7 @@
 	width: 35px;
 	right: 2px;
 	padding: 0.2em;
+	transform: none;
 }
 
 .full_screen_media__btn:hover {
