@@ -25,7 +25,7 @@
 .full_screen_media__carousel-inner {
 	position: relative;
 	overflow: hidden;
-	aspect-ratio: 9/12;
+	/* aspect-ratio: 9/12; */
 	min-width: 82%;
 }
 

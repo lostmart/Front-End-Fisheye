@@ -90,6 +90,12 @@ li {
 		align-items: center;
 	}
 
+	.full_screen_media img {
+		display: block;
+		max-width: 85%;
+		margin: auto;
+	}
+
 	.full_screen_media__carousel {
 		padding: 0.2em;
 		align-items: center;
@@ -97,11 +103,20 @@ li {
 	}
 
 	.full_screen_media__carousel-inner {
-		aspect-ratio: 14/12;
+		/* aspect-ratio: 14/12; */
+		display: flex;
+		align-items: center;
 	}
 
 	.full_screen_media__btn {
-		width: 96px;
+		padding: 0.5em;
+		width: 35px;
 		top: 50%;
+	}
+
+	.full_screen_media__btn-close {
+		top: 2px;
+		width: 40px;
+		right: 18px;
 	}
 }
