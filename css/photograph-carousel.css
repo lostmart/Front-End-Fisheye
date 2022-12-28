@@ -66,6 +66,11 @@
 	transition: all 500ms ease-in-out;
 }
 
+.carousel-item video {
+	margin: auto;
+	display: block;
+}
+
 .full_screen_media__btn-left {
 	left: 0.5em;
 	transform: rotate(180deg);

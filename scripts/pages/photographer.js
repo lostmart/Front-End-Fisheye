@@ -20,23 +20,6 @@ const mainCont = document.querySelector('#main')
 const bodyClick = document.querySelector('body')
 
 let openList = false
-let opencarousel = false
-let carousel
-/*
-agregar luego
-toggleBtn.addEventListener('click', (e) => {
-	if (!openList) {
-		e.stopPropagation()
-		listUl.classList.add('open-list')
-		toggleBtn.childNodes[1].classList.add('open-item')
-		toggleBtn.style.borderBottomColor = 'white'
-		listUl.childNodes[3].style.borderBottomColor = 'white'
-		openList = true
-	} else {
-		closeList()
-	}
-})
-*/
 
 bodyClick.addEventListener('click', () => {
 	if (openList === true) {
@@ -74,7 +57,7 @@ async function init() {
 
 	/*  PHOTO ARRAY CONSTRUCT    */
 	/*  creates an object with an array of all the needed photos
-	and three useful methods                             */
+	and three useful methods     */
 	const photoModel = mediaFactory(media, usersId)
 	const photographMedia = document.querySelector('.photograph-media')
 	const photoMedia_thumbnails = getContElemCont(
@@ -119,9 +102,6 @@ async function init() {
 	photographMedia.appendChild(photoMedia_thumbnails)
 
 	mainCont.appendChild(createCarousel(photoModel.modelPhotosArray))
-	// carousel = document.querySelector('.full_screen_media')
-	// console.log(carousel)
-	// carousel.style.display = "flex"
 
 	const toggleBtn = document.querySelectorAll('li')[0]
 	const listUl = document.querySelector('ul')
@@ -143,9 +123,9 @@ async function init() {
 	//const newdata = new MediaData(media[0])
 	//console.log(newdata)
 }
-
+/*
 function populateMediaScroll(selectedPic) {
-	/* check this is not a video */
+
 
 	photographMedia__imgCont.appendChild(img)
 	link.appendChild(photographMedia__imgCont)
@@ -157,7 +137,7 @@ function populateMediaScroll(selectedPic) {
 	console.log(photographHeader__content)
 }
 
-/*
+
 function createCarousel() {
 	const full_screen_media = getContElemCont('div', 'full_screen_media')
 	const full_screen_media__carousel = getContElemCont(

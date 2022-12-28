@@ -1,13 +1,14 @@
-import Photographer from "../classes/photographerClass.js"
-import Photo from "../classes/mediaClass.js"
+// import Photographer from '../classes/photographerClass.js'
+import Photo from '../classes/mediaClass.js'
+let selectedPhotos = []
 
 /*  factory fn: accepts an Array:["media"] and a String:"userId"  */
 export default function mediaFactory(media, usersId) {
 	let modelPhotosArray = []
 	// returns the selected array of pics according to the photographerId
-	let selectedPhotos = []
 	;(function () {
 		selectedPhotos = media.filter((photo) => photo.photographerId == usersId)
+		// console.log(selectedPhotos)
 	})()
 
 	/* creates a photo object based on the photo class    */
@@ -63,6 +64,7 @@ export default function mediaFactory(media, usersId) {
 
 	return {
 		modelPhotosArray,
+		selectedPhotos,
 		arrangeByPopularity,
 		arrangeByDates,
 		arrangeByTitles,

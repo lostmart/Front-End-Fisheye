@@ -1,6 +1,7 @@
 let showCarousel = false
 let carousel = null
 let mediaIndx = null
+let noOfElements = null
 
 // create an image
 // first arg: name(alt text) - second: image source(url)
@@ -69,6 +70,7 @@ export function photoCard(selectedPic, indx) {
 // creates carousel
 
 export function createCarousel(elements) {
+	noOfElements = elements.length
 	const full_screen_media = getContElemCont('div', 'full_screen_media')
 	const full_screen_media__carousel = getContElemCont(
 		'div',
@@ -78,12 +80,13 @@ export function createCarousel(elements) {
 		'div',
 		'full_screen_media__carousel-inner'
 	)
+	console.log(noOfElements)
 	elements.forEach((pic, i) => {
 		const carouselItem = getContElemCont('div', 'carousel-item')
 		const { image } = pic
 		const carouselItemReady = createMediaUrl(pic, image, i, carouselItem)
 
-		console.log(carouselItemReady)
+		// console.log(carouselItemReady)
 		full_screen_media__carouselInner.appendChild(carouselItemReady)
 	})
 
@@ -137,13 +140,17 @@ function createMediaUrl(selectedPic, image, indx, element) {
 		leftLink.classList.add('full_screen_media__btn-left')
 		leftLink.setAttribute('aria-label', 'previous image')
 		leftLink.appendChild(leftArrow)
-		leftLink.addEventListener('click', () => console.log('left btn ...'))
+		leftLink.addEventListener('click', () => {
+			changeActImg('left')
+		})
 
 		const rightLink = getContElemCont('a', 'full_screen_media__btn')
 		const rightArrow = getImage('next arrow', './assets/icons/arrow-red.svg')
 		rightLink.setAttribute('aria-label', 'next image')
 		rightLink.appendChild(rightArrow)
-		rightLink.addEventListener('click', () => console.log('right btn ...'))
+		rightLink.addEventListener('click', () => {
+			changeActImg('right')
+		})
 
 		element.appendChild(leftLink)
 		element.appendChild(img)
@@ -160,7 +167,52 @@ function createMediaUrl(selectedPic, image, indx, element) {
 		source.setAttribute('type', 'video/mp4')
 		source.src = videoUrl
 		video.appendChild(source)
+
+		const leftLink = getContElemCont('a', 'full_screen_media__btn')
+		const leftArrow = getImage('previous arrow', './assets/icons/arrow-red.svg')
+		leftLink.classList.add('full_screen_media__btn-left')
+		leftLink.setAttribute('aria-label', 'previous image')
+		leftLink.appendChild(leftArrow)
+		leftLink.addEventListener('click', () => {
+			changeActImg('left')
+		})
+
+		const rightLink = getContElemCont('a', 'full_screen_media__btn')
+		const rightArrow = getImage('next arrow', './assets/icons/arrow-red.svg')
+		rightLink.setAttribute('aria-label', 'next image')
+		rightLink.appendChild(rightArrow)
+		rightLink.addEventListener('click', () => {
+			changeActImg('right')
+		})
+
+		element.appendChild(leftLink)
 		element.appendChild(video)
+		element.appendChild(rightLink)
+
 		return element
+	}
+}
+
+function changeActImg(direction) {
+	if (direction === 'right') {
+		if (mediaIndx === noOfElements - 1) {
+			clearActiveItem()
+			mediaIndx = 0
+			setActiveItem()
+		} else {
+			clearActiveItem()
+			mediaIndx++
+			setActiveItem()
+		}
+	} else {
+		if (mediaIndx === 0) {
+			clearActiveItem()
+			mediaIndx = noOfElements - 1
+			setActiveItem()
+		} else {
+			clearActiveItem()
+			mediaIndx--
+			setActiveItem()
+		}
 	}
 }
