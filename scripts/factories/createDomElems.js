@@ -43,7 +43,7 @@ export function photoCard(selectedPic, indx) {
 		'photograph-media__imgCont'
 	)
 
-	createMediaUrl(selectedPic, image, indx, photographMedia__imgCont)
+	createMediaUrl(selectedPic, image, indx, photographMedia__imgCont, false)
 
 	const photoMedia__text = getContElemCont('div', 'photo-media__text')
 	photoMedia__text.appendChild(textBlock('h2', selectedPic.title))
@@ -82,11 +82,18 @@ export function createCarousel(elements) {
 	)
 	console.log(noOfElements)
 	elements.forEach((pic, i) => {
+		// console.log(pic)
+		const { image, likes, title } = pic
 		const carouselItem = getContElemCont('div', 'carousel-item')
-		const { image } = pic
-		const carouselItemReady = createMediaUrl(pic, image, i, carouselItem)
+		const carouselItemReady = createMediaUrl(
+			pic,
+			image,
+			i,
+			carouselItem,
+			true,
+			title
+		)
 
-		// console.log(carouselItemReady)
 		full_screen_media__carouselInner.appendChild(carouselItemReady)
 	})
 
@@ -95,6 +102,25 @@ export function createCarousel(elements) {
 	closeBtn.setAttribute('aria-label', 'close')
 	const closeBtnImg = getImage('close carousel', './assets/icons/close-red.svg')
 	closeBtn.addEventListener('click', () => toggleCarousel())
+
+	const leftLink = getContElemCont('a', 'full_screen_media__btn')
+	const leftArrow = getImage('previous arrow', './assets/icons/arrow-red.svg')
+	leftLink.classList.add('full_screen_media__btn-left')
+	leftLink.setAttribute('aria-label', 'previous image')
+	leftLink.appendChild(leftArrow)
+	leftLink.addEventListener('click', () => {
+		changeActImg('left')
+	})
+
+	const rightLink = getContElemCont('a', 'full_screen_media__btn')
+	const rightArrow = getImage('next arrow', './assets/icons/arrow-red.svg')
+	rightLink.setAttribute('aria-label', 'next image')
+	rightLink.appendChild(rightArrow)
+	rightLink.addEventListener('click', () => {
+		changeActImg('right')
+	})
+	full_screen_media__carouselInner.appendChild(leftLink)
+	full_screen_media__carouselInner.appendChild(rightLink)
 
 	closeBtn.appendChild(closeBtnImg)
 	full_screen_media__carousel.appendChild(full_screen_media__carouselInner)
@@ -121,7 +147,7 @@ export function toggleCarousel() {
 
 function setActiveItem() {
 	const selectedItem = document.querySelectorAll('.carousel-item')[mediaIndx]
-	selectedItem.style.display = 'block'
+	selectedItem.style.display = 'flex'
 }
 
 function clearActiveItem() {
@@ -130,31 +156,24 @@ function clearActiveItem() {
 }
 
 // creates a media holder an image or video
-function createMediaUrl(selectedPic, image, indx, element) {
+function createMediaUrl(
+	selectedPic,
+	image,
+	indx,
+	element,
+	carouselCard,
+	title
+) {
 	if (image) {
 		const imgUrl = `assets/${selectedPic.folderName()}${selectedPic.image}`
 		const img = getImage(selectedPic.title, imgUrl)
 		img.dataset.indxNo = indx
-		const leftLink = getContElemCont('a', 'full_screen_media__btn')
-		const leftArrow = getImage('previous arrow', './assets/icons/arrow-red.svg')
-		leftLink.classList.add('full_screen_media__btn-left')
-		leftLink.setAttribute('aria-label', 'previous image')
-		leftLink.appendChild(leftArrow)
-		leftLink.addEventListener('click', () => {
-			changeActImg('left')
-		})
+		const parag = document.createElement('p')
+		parag.textContent = title
 
-		const rightLink = getContElemCont('a', 'full_screen_media__btn')
-		const rightArrow = getImage('next arrow', './assets/icons/arrow-red.svg')
-		rightLink.setAttribute('aria-label', 'next image')
-		rightLink.appendChild(rightArrow)
-		rightLink.addEventListener('click', () => {
-			changeActImg('right')
-		})
-
-		element.appendChild(leftLink)
 		element.appendChild(img)
-		element.appendChild(rightLink)
+		element.appendChild(parag)
+		console.log(element)
 
 		return element
 	} else {
@@ -167,27 +186,7 @@ function createMediaUrl(selectedPic, image, indx, element) {
 		source.setAttribute('type', 'video/mp4')
 		source.src = videoUrl
 		video.appendChild(source)
-
-		const leftLink = getContElemCont('a', 'full_screen_media__btn')
-		const leftArrow = getImage('previous arrow', './assets/icons/arrow-red.svg')
-		leftLink.classList.add('full_screen_media__btn-left')
-		leftLink.setAttribute('aria-label', 'previous image')
-		leftLink.appendChild(leftArrow)
-		leftLink.addEventListener('click', () => {
-			changeActImg('left')
-		})
-
-		const rightLink = getContElemCont('a', 'full_screen_media__btn')
-		const rightArrow = getImage('next arrow', './assets/icons/arrow-red.svg')
-		rightLink.setAttribute('aria-label', 'next image')
-		rightLink.appendChild(rightArrow)
-		rightLink.addEventListener('click', () => {
-			changeActImg('right')
-		})
-
-		element.appendChild(leftLink)
 		element.appendChild(video)
-		element.appendChild(rightLink)
 
 		return element
 	}

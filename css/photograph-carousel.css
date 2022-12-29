@@ -20,23 +20,32 @@
 	padding: 0.2em;
 	margin-top: 0.5em;
 	width: 100%;
+	max-width: 1253px;
 }
 
 .full_screen_media__carousel-inner {
 	position: relative;
-	overflow: hidden;
-	aspect-ratio: 9/12;
 	min-width: 82%;
 }
 
 .carousel-item {
 	position: relative;
 	margin-right: -100%;
-	-webkit-backface-visibility: hidden;
-	backface-visibility: hidden;
 	display: none;
 	transition: transform 0.6s ease-in-out;
-	width: 100%;
+	width: 95%;
+	margin: 0 auto;
+	max-height: 900px;
+	overflow: hidden;
+	max-width: 1050px;
+	flex-direction: column;
+	align-items: flex-start;
+	justify-content: center;
+}
+
+.carousel-item p {
+	color: #901c1c;
+	padding-top: 0.2em;
 }
 
 .carousel-item-active {
@@ -49,7 +58,7 @@
 
 .full_screen_media img {
 	display: block;
-	max-width: 98vw;
+	max-width: 1050px;
 }
 
 .full_screen_media__btn {

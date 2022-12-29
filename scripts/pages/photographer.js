@@ -94,7 +94,7 @@ async function init() {
 	photoModel.modelPhotosArray.forEach((photo, indx) => {
 		const link = photoCard(photo, indx)
 		photoMediaScroller.appendChild(link)
-		// console.log(typeof link);
+		// console.log(link)
 	})
 
 	photoMedia_thumbnails.appendChild(photographMediaThumbTitle)
@@ -123,59 +123,5 @@ async function init() {
 	//const newdata = new MediaData(media[0])
 	//console.log(newdata)
 }
-/*
-function populateMediaScroll(selectedPic) {
-
-
-	photographMedia__imgCont.appendChild(img)
-	link.appendChild(photographMedia__imgCont)
-
-	link.appendChild(photoMedia__text)
-	photographHeader__content.appendChild(link)
-	photographMedia.appendChild(photographHeader__content)
-
-	console.log(photographHeader__content)
-}
-
-
-function createCarousel() {
-	const full_screen_media = getContElemCont('div', 'full_screen_media')
-	const full_screen_media__carousel = getContElemCont(
-		'div',
-		'full_screen_media__carousel'
-	)
-	const full_screen_media__carouselInner = getContElemCont(
-		'div',
-		'full_screen_media__carousel-inner'
-	)
-	const carouselItem = getContElemCont('div', 'carousel-item')
-	const carouselImg = getImage(
-		'teto',
-		'./assets/images/Mimi/Animals_Rainbow.jpg'
-	)
-	const closeBtn = getContElemCont('button', 'full_screen_media__btn')
-	closeBtn.classList.add('full_screen_media__btn-close')
-	closeBtn.setAttribute('aria-label', 'close')
-	const closeBtnImg = getImage('close carousel', './assets/icons/close-red.svg')
-
-	const leftLink = getContElemCont('a', 'full_screen_media__btn')
-	leftLink.classList.add('full_screen_media__btn-left')
-	leftLink.setAttribute('aria-label', 'previous image')
-
-	const rightLink = getContElemCont('a', 'full_screen_media__btn')
-	rightLink.setAttribute('aria-label', 'next image')
-
-	closeBtn.appendChild(closeBtnImg)
-	carouselItem.appendChild(carouselImg)
-	full_screen_media__carouselInner.appendChild(carouselItem)
-	full_screen_media__carousel.appendChild(full_screen_media__carouselInner)
-	full_screen_media__carousel.appendChild(closeBtn)
-	full_screen_media__carousel.appendChild(leftLink)
-	full_screen_media__carousel.appendChild(rightLink)
-	full_screen_media.appendChild(full_screen_media__carousel)
-	console.log(full_screen_media__carousel)
-	return full_screen_media
-}
-*/
 
 init()
