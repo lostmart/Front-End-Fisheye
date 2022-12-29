@@ -92,10 +92,15 @@ li {
 
 	.full_screen_media img {
 		display: block;
+<<<<<<< HEAD
 		/*
 		max-width: 85%;
 		margin: auto;
 		*/
+=======
+		max-width: 85%;
+		margin: auto;
+>>>>>>> abc12480bd1fbbba298baa08db77337c64d351eb
 	}
 
 	.full_screen_media__carousel {
@@ -111,8 +116,13 @@ li {
 	}
 
 	.full_screen_media__btn {
+<<<<<<< HEAD
 		padding: 1.8em;
 		width: 90px;
+=======
+		padding: 0.5em;
+		width: 35px;
+>>>>>>> abc12480bd1fbbba298baa08db77337c64d351eb
 		top: 50%;
 		right: -62px;
 	}
@@ -126,5 +136,11 @@ li {
 		top: -10px;
 		width: 72px;
 		right: 54px;
+	}
+
+	.full_screen_media__btn-close {
+		top: 2px;
+		width: 40px;
+		right: 18px;
 	}
 }

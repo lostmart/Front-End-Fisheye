@@ -25,6 +25,11 @@
 
 .full_screen_media__carousel-inner {
 	position: relative;
+<<<<<<< HEAD
+=======
+	overflow: hidden;
+	/* aspect-ratio: 9/12; */
+>>>>>>> abc12480bd1fbbba298baa08db77337c64d351eb
 	min-width: 82%;
 }
 
