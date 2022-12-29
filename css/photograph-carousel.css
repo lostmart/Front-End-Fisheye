@@ -25,24 +25,24 @@
 
 .full_screen_media__carousel-inner {
 	position: relative;
-<<<<<<< HEAD
-=======
 	overflow: hidden;
-	/* aspect-ratio: 9/12; */
->>>>>>> abc12480bd1fbbba298baa08db77337c64d351eb
 	min-width: 82%;
 }
 
 .carousel-item {
 	position: relative;
-	margin-right: -100%;
 	display: none;
 	transition: transform 0.6s ease-in-out;
 	width: 95%;
 	margin: 0 auto;
+	flex-direction: column;
+}
+
+.carousel-item__imgContainer {
 	max-height: 900px;
 	overflow: hidden;
 	max-width: 1050px;
+	display: flex;
 	flex-direction: column;
 	align-items: flex-start;
 	justify-content: center;
@@ -51,6 +51,7 @@
 .carousel-item p {
 	color: #901c1c;
 	padding-top: 0.2em;
+	font-size: 24px;
 }
 
 .carousel-item-active {

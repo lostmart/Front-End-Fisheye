@@ -82,7 +82,6 @@ export function createCarousel(elements) {
 	)
 	console.log(noOfElements)
 	elements.forEach((pic, i) => {
-		// console.log(pic)
 		const { image, likes, title } = pic
 		const carouselItem = getContElemCont('div', 'carousel-item')
 		const carouselItemReady = createMediaUrl(
@@ -94,6 +93,7 @@ export function createCarousel(elements) {
 			title
 		)
 
+		console.log(carouselItemReady)
 		full_screen_media__carouselInner.appendChild(carouselItemReady)
 	})
 
@@ -128,7 +128,6 @@ export function createCarousel(elements) {
 	//full_screen_media__carousel.appendChild(leftLink)
 	//full_screen_media__carousel.appendChild(rightLink)
 	full_screen_media.appendChild(full_screen_media__carousel)
-	// console.log(full_screen_media__carousel)
 	carousel = full_screen_media
 	return full_screen_media
 }
@@ -168,12 +167,17 @@ function createMediaUrl(
 		const imgUrl = `assets/${selectedPic.folderName()}${selectedPic.image}`
 		const img = getImage(selectedPic.title, imgUrl)
 		img.dataset.indxNo = indx
+		const carouselImgCont = getContElemCont(
+			'div',
+			'carousel-item__imgContainer'
+		)
+		carouselImgCont.appendChild(img)
 		const parag = document.createElement('p')
 		parag.textContent = title
 
-		element.appendChild(img)
+		element.appendChild(carouselImgCont)
 		element.appendChild(parag)
-		console.log(element)
+		// console.log(element)
 
 		return element
 	} else {
