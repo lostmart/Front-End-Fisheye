@@ -58,6 +58,7 @@ async function init() {
 	/*  creates an object with an array of all the needed photos
 	and three useful methods     */
 	const photoModel = mediaFactory(media, usersId)
+	console.log(photoModel)
 	const photographMedia = document.querySelector('.photograph-media')
 	const photoMedia_thumbnails = getContElemCont(
 		'div',
@@ -94,12 +95,15 @@ async function init() {
 		e.stopPropagation()
 		closeList(ul)
 		list_one.style.borderBottomColor = 'transparent'
+		photoModel.arrangeByDates()
+		console.log('hello !:!!')
 	})
 
 	list_three.addEventListener('click', (e) => {
 		e.stopPropagation()
 		closeList(ul)
 		list_one.style.borderBottomColor = 'transparent'
+		photoModel.arrangeByTitles()
 	})
 
 	ul.appendChild(list_one)

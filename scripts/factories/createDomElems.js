@@ -80,9 +80,9 @@ export function createCarousel(elements) {
 		'div',
 		'full_screen_media__carousel-inner'
 	)
-	console.log(noOfElements)
+	// console.log(noOfElements)
 	elements.forEach((pic, i) => {
-		const { image, likes, title } = pic
+		const { image, title } = pic
 		const carouselItem = getContElemCont('div', 'carousel-item')
 		const carouselItemReady = createMediaUrl(
 			pic,
@@ -125,8 +125,6 @@ export function createCarousel(elements) {
 	closeBtn.appendChild(closeBtnImg)
 	full_screen_media__carousel.appendChild(full_screen_media__carouselInner)
 	full_screen_media__carousel.appendChild(closeBtn)
-	//full_screen_media__carousel.appendChild(leftLink)
-	//full_screen_media__carousel.appendChild(rightLink)
 	full_screen_media.appendChild(full_screen_media__carousel)
 	carousel = full_screen_media
 	return full_screen_media
@@ -183,7 +181,7 @@ function createMediaUrl(
 	} else {
 		const videoUrl = `assets/${selectedPic.folderName()}${selectedPic.video}`
 		const video = document.createElement('video')
-		video.setAttribute('width', '344')
+		video.setAttribute('width', '350')
 		video.setAttribute('height', '300')
 		video.setAttribute('controls', true)
 		const source = document.createElement('source')
