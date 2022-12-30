@@ -1,5 +1,5 @@
 // import Photographer from '../classes/photographerClass.js'
-import Photo from '../classes/mediaClass.js'
+import Photo from "../classes/mediaClass.js"
 let selectedPhotos = []
 
 /*  factory fn: accepts an Array:["media"] and a String:"userId"  */
@@ -18,6 +18,9 @@ export default function mediaFactory(media, usersId) {
 			modelPhotosArray.push(photoModel)
 		})
 	}
+
+	arrangeByPopularity()
+	console.log(selectedPhotos)
 
 	/*  modifies modelPhotosArray by popularity   */
 	function arrangeByPopularity() {
