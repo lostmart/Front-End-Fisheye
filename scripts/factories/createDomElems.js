@@ -1,6 +1,6 @@
 let showCarousel = false
 let carousel = null
-let mediaIndx = null
+let mediaIndx = 0
 let noOfElements = null
 
 // create an image
@@ -61,6 +61,7 @@ export function photoCard(selectedPic, indx) {
 
 	link.addEventListener('click', (e) => {
 		mediaIndx = e.target.getAttribute('data-indx-no')
+		console.log(mediaIndx)
 		toggleCarousel(mediaIndx)
 	})
 	// console.log(link)
@@ -144,6 +145,7 @@ export function toggleCarousel() {
 
 function setActiveItem() {
 	const selectedItem = document.querySelectorAll('.carousel-item')[mediaIndx]
+	console.log(selectedItem)
 	selectedItem.style.display = 'flex'
 }
 

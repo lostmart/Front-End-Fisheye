@@ -1,5 +1,5 @@
 // import Photographer from '../classes/photographerClass.js'
-import Photo from "../classes/mediaClass.js"
+import Photo from '../classes/mediaClass.js'
 let selectedPhotos = []
 
 /*  factory fn: accepts an Array:["media"] and a String:"userId"  */
@@ -19,24 +19,24 @@ export default function mediaFactory(media, usersId) {
 		})
 	}
 
-	arrangeByPopularity()
-	console.log(selectedPhotos)
-
 	/*  modifies modelPhotosArray by popularity   */
 	function arrangeByPopularity() {
 		modelPhotosArray.sort((a, b) => {
 			return b.likes - a.likes
 		})
+		console.log(modelPhotosArray)
 	}
 
 	/*  modifies modelPhotosArray by date   */
 	function arrangeByDates() {
 		modelPhotosArray.sort(compareDates)
+		console.log(modelPhotosArray)
 	}
 
 	/*  modifies modelPhotosArray by title   */
 	function arrangeByTitles() {
 		modelPhotosArray.sort(compareTitles)
+		console.log(modelPhotosArray)
 	}
 
 	/* helper fn */
@@ -62,6 +62,9 @@ export default function mediaFactory(media, usersId) {
 
 	/* this fn instantiates each photo obj and pushes it to the modelPhotosArray  */
 	arrayModel()
+	// arrangeByTitles()
+	// arrangeByPopularity()
+	console.log(modelPhotosArray)
 
 	// console.log(modelPhotosArray)
 

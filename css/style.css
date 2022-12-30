@@ -132,6 +132,10 @@ li {
 		right: 96px;
 	}
 
+	.carousel-item__imgContainer {
+		aspect-ratio: 7/6;
+	}
+
 	.carousel-item p {
 		padding-left: 3em;
 	}
