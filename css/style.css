@@ -83,7 +83,6 @@ li {
 
 	.photograph-media__card .photograph-media__imgCont {
 		width: 24.304vw;
-		aspect-ratio: 7/6;
 	}
 
 	.full_screen_media {
@@ -103,7 +102,6 @@ li {
 	}
 
 	.full_screen_media__carousel-inner {
-		/* aspect-ratio: 14/12; */
 		display: flex;
 		align-items: center;
 	}
@@ -118,7 +116,7 @@ li {
 	}
 	.full_screen_media__btn-left {
 		left: 0;
-		top: 43.8%;
+		top: 47.8%;
 	}
 
 	.full_screen_media__btn-close {
@@ -131,6 +129,10 @@ li {
 	.full_screen_media__btn-close {
 		top: 2px;
 		width: 40px;
-		right: 18px;
+		right: 96px;
+	}
+
+	.carousel-item p {
+		padding-left: 3em;
 	}
 }

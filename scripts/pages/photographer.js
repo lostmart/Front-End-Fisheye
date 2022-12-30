@@ -21,17 +21,16 @@ const bodyClick = document.querySelector('body')
 
 let openList = false
 
+/*
 bodyClick.addEventListener('click', () => {
 	if (openList === true) {
 		closeList()
 	}
 })
+*/
 
-function closeList() {
-	listUl.classList.remove('open-list')
-	toggleBtn.childNodes[1].classList.remove('open-item')
-	toggleBtn.style.borderBottomColor = 'transparent'
-	listUl.childNodes[3].style.borderBottomColor = 'transparent'
+function closeList(ulList) {
+	ulList.classList.remove('open-list')
 	openList = false
 }
 
@@ -75,9 +74,33 @@ async function init() {
 
 	list_one.textContent = 'Popularité'
 	list_one.appendChild(list_img)
-
 	const list_two = textBlock('li', 'Date')
 	const list_three = textBlock('li', 'Titre')
+
+	list_one.addEventListener('click', (e) => {
+		if (!openList) {
+			e.stopPropagation()
+			ul.classList.add('open-list')
+			list_one.style.borderBottomColor = 'white'
+			list_two.style.borderBottomColor = 'white'
+			openList = true
+		} else {
+			closeList(ul)
+			list_one.style.borderBottomColor = 'transparent'
+		}
+	})
+
+	list_two.addEventListener('click', (e) => {
+		e.stopPropagation()
+		closeList(ul)
+		list_one.style.borderBottomColor = 'transparent'
+	})
+
+	list_three.addEventListener('click', (e) => {
+		e.stopPropagation()
+		closeList(ul)
+		list_one.style.borderBottomColor = 'transparent'
+	})
 
 	ul.appendChild(list_one)
 	ul.appendChild(list_two)
@@ -102,26 +125,6 @@ async function init() {
 	photographMedia.appendChild(photoMedia_thumbnails)
 
 	mainCont.appendChild(createCarousel(photoModel.modelPhotosArray))
-
-	const toggleBtn = document.querySelectorAll('li')[0]
-	const listUl = document.querySelector('ul')
-
-	toggleBtn.addEventListener('click', (e) => {
-		if (!openList) {
-			e.stopPropagation()
-			listUl.classList.add('open-list')
-			toggleBtn.childNodes[1].classList.add('open-item')
-			toggleBtn.style.borderBottomColor = 'white'
-			listUl.childNodes[3].style.borderBottomColor = 'white'
-			openList = true
-		} else {
-			closeList()
-		}
-	})
-
-	// populateMediaScroll(photoModel.modelPhotosArray)
-	//const newdata = new MediaData(media[0])
-	//console.log(newdata)
 }
 
 init()

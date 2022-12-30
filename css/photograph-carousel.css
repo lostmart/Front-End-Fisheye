@@ -27,6 +27,7 @@
 	position: relative;
 	overflow: hidden;
 	min-width: 82%;
+	height: fit-content;
 }
 
 .carousel-item {
@@ -44,8 +45,9 @@
 	max-width: 1050px;
 	display: flex;
 	flex-direction: column;
-	align-items: flex-start;
+	align-items: center;
 	justify-content: center;
+	aspect-ratio: 7/6;
 }
 
 .carousel-item p {
@@ -70,7 +72,7 @@
 .full_screen_media__btn {
 	position: absolute;
 	right: 0.5em;
-	top: 50%;
+	top: 45%;
 	transform: translateY(-50%);
 	background-color: rgb(255, 255, 255, 0.25);
 	border: none;
@@ -89,6 +91,7 @@
 .full_screen_media__btn-left {
 	left: 0.5em;
 	transform: rotate(180deg);
+	top: 42.1%;
 }
 
 .full_screen_media__btn-close {

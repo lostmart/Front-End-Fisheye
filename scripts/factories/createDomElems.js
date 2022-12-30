@@ -93,7 +93,7 @@ export function createCarousel(elements) {
 			title
 		)
 
-		console.log(carouselItemReady)
+		// console.log(carouselItemReady)
 		full_screen_media__carouselInner.appendChild(carouselItemReady)
 	})
 
@@ -183,7 +183,7 @@ function createMediaUrl(
 	} else {
 		const videoUrl = `assets/${selectedPic.folderName()}${selectedPic.video}`
 		const video = document.createElement('video')
-		video.setAttribute('width', '350')
+		video.setAttribute('width', '344')
 		video.setAttribute('height', '300')
 		video.setAttribute('controls', true)
 		const source = document.createElement('source')
