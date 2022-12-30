@@ -78,6 +78,10 @@ async function init() {
 	const list_two = textBlock('li', 'Date')
 	const list_three = textBlock('li', 'Titre')
 
+	ul.addEventListener('click', () => {
+		console.log('by popularity')
+	})
+
 	list_one.addEventListener('click', (e) => {
 		if (!openList) {
 			e.stopPropagation()
@@ -96,7 +100,7 @@ async function init() {
 		closeList(ul)
 		list_one.style.borderBottomColor = 'transparent'
 		photoModel.arrangeByDates()
-		console.log('hello !:!!')
+		console.log('by date')
 	})
 
 	list_three.addEventListener('click', (e) => {
@@ -104,6 +108,7 @@ async function init() {
 		closeList(ul)
 		list_one.style.borderBottomColor = 'transparent'
 		photoModel.arrangeByTitles()
+		console.log('by title')
 	})
 
 	ul.appendChild(list_one)
