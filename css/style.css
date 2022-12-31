@@ -54,6 +54,11 @@ li {
 		align-items: start;
 	}
 
+	.photograph-header .photograph-header__content h2 {
+		text-align: start;
+		line-height: 1;
+	}
+
 	.photograph-header .photograph-header__info {
 		position: fixed;
 		bottom: 1.5em;

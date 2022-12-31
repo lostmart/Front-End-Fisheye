@@ -53,6 +53,8 @@ async function init() {
 		new Photographer(selectedPhotographer(photographers))
 	)
 	photographerModel.singlePageHeader(photographerModel, mainCont)
+	const formTitle = document.querySelector('.modal__title')
+	formTitle.textContent += photographerModel.name
 
 	/*  PHOTO ARRAY CONSTRUCT    */
 	/*  creates an object with an array of all the needed photos

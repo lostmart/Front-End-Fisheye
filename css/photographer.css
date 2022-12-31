@@ -1,25 +1,41 @@
-@import url("photograph-header.css");
-@import url("photograph-carousel.css");
+@import url('photograph-header.css');
+@import url('photograph-carousel.css');
 
 #contact_modal {
 	display: none;
+	position: fixed;
+	background-color: rgb(196 196 196 / 40%);
+	width: 100%;
+	height: 100vh;
+	top: 0;
+	left: 0;
+	z-index: 50;
+	align-items: center;
 }
 
 .modal {
 	border-radius: 5px;
 	background-color: #db8876;
-	width: 50%;
+	width: 98%;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: space-between;
 	padding: 35px;
+	max-width: 670px;
 	margin: auto;
 }
 
 .modal header {
+	display: flex;
 	justify-content: space-between;
 	width: 100%;
+}
+
+.modal .modal__btn-close {
+	background-color: transparent;
+	border: none;
+	padding: 0.2em 1em;
 }
 
 .modal header img {
@@ -29,7 +45,6 @@
 .modal header h2 {
 	font-size: 64px;
 	font-weight: normal;
-	text-align: center;
 }
 
 form {
@@ -52,9 +67,29 @@ form div {
 	margin-bottom: 26px;
 }
 
-form input {
+form input,
+form textarea {
 	width: 100%;
 	height: 68px;
 	border: none;
 	border-radius: 5px;
+}
+
+form textarea {
+	height: 170px;
+}
+
+form .contact_button {
+	font-size: 20px;
+	font-weight: bold;
+	color: white;
+	padding: 11px;
+	width: 170px;
+	height: 70px;
+	border: none;
+	background-color: #901c1c;
+	border-radius: 5px;
+	cursor: pointer;
+	margin-top: 1.1em;
+	margin-bottom: 1.5em;
 }
