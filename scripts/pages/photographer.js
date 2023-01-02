@@ -109,7 +109,7 @@ async function init() {
 		photoModel.modelPhotosArray.forEach((photo, indx) => {
 			const link = photoCard(photo, indx)
 			photoMediaScroller.appendChild(link)
-			// console.log(link)
+			console.log(link)
 		})
 
 		photoMedia_thumbnails.appendChild(photographMediaThumbTitle)

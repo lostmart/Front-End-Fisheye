@@ -49,15 +49,17 @@ export function photoCard(selectedPic, indx) {
 	div.appendChild(textBlock('span', selectedPic.likes))
 	photoMedia__text.appendChild(div)
 
-	div.appendChild(getImage('likes', './assets/icons/heart-red.svg'))
+	const button = document.createElement('button')
+	button.setAttribute('data-indx', indx)
+	button.appendChild(getImage('likes', './assets/icons/heart-red.svg'))
+	button.addEventListener('click', (e) => console.log(e.target))
+
+	div.appendChild(button)
 	photoMedia__text.appendChild(div)
 
 	photographHeader__content.appendChild(photographMedia__imgCont)
 	photographHeader__content.appendChild(photoMedia__text)
 
-	// link.appendChild(photographHeader__content)
-
-	console.log(photographHeader__content)
 	return photographHeader__content
 }
 
@@ -152,7 +154,6 @@ export function toggleCarousel() {
 
 function setActiveItem() {
 	const selectedItem = document.querySelectorAll('.carousel-item')[mediaIndx]
-	console.log(selectedItem)
 	selectedItem.style.display = 'flex'
 }
 

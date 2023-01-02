@@ -1,6 +1,7 @@
 // import Photographer from '../classes/photographerClass.js'
 import Photo from '../classes/mediaClass.js'
 let selectedPhotos = []
+let totalLikes = 0
 
 /*  factory fn: accepts an Array:["media"] and a String:"userId"  */
 export default function mediaFactory(media, usersId) {
@@ -15,8 +16,17 @@ export default function mediaFactory(media, usersId) {
 	function arrayModel() {
 		selectedPhotos.forEach((photo) => {
 			const photoModel = new Photo(photo)
+			calculateLikes(photoModel.likes)
 			modelPhotosArray.push(photoModel)
 		})
+	}
+
+	function calculateLikes(likeNo) {
+		totalLikes = totalLikes + likeNo
+		const photograph__likes = document.querySelector(
+			'.photograph-header__likes'
+		)
+		photograph__likes.firstChild.textContent = totalLikes
 	}
 
 	/*  modifies modelPhotosArray by popularity   */
@@ -24,19 +34,16 @@ export default function mediaFactory(media, usersId) {
 		modelPhotosArray.sort((a, b) => {
 			return b.likes - a.likes
 		})
-		console.log(modelPhotosArray)
 	}
 
 	/*  modifies modelPhotosArray by date   */
 	function arrangeByDates() {
 		modelPhotosArray.sort(compareDates)
-		console.log(modelPhotosArray)
 	}
 
 	/*  modifies modelPhotosArray by title   */
 	function arrangeByTitles() {
 		modelPhotosArray.sort(compareTitles)
-		console.log(modelPhotosArray)
 	}
 
 	/* helper fn */
@@ -62,11 +69,6 @@ export default function mediaFactory(media, usersId) {
 
 	/* this fn instantiates each photo obj and pushes it to the modelPhotosArray  */
 	arrayModel()
-	// arrangeByTitles()
-	// arrangeByPopularity()
-	console.log(modelPhotosArray)
-
-	// console.log(modelPhotosArray)
 
 	return {
 		modelPhotosArray,
