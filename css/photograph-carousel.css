@@ -47,7 +47,7 @@
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	aspect-ratio: auto;
+	aspect-ratio: 7/5;
 }
 
 .carousel-item p {
