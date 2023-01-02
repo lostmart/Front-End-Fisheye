@@ -91,8 +91,11 @@ async function init() {
 
 	list_one.textContent = 'Popularité'
 	list_one.appendChild(list_img)
+	list_one.setAttribute('tabindex', '2')
 	const list_two = textBlock('li', 'Date')
+	list_two.setAttribute('tabindex', '3')
 	const list_three = textBlock('li', 'Titre')
+	list_three.setAttribute('tabindex', '4')
 
 	// arrange by popularity
 	ul.addEventListener('click', () => {
@@ -126,6 +129,23 @@ async function init() {
 		} else {
 			closeList(ul)
 			list_one.style.borderBottomColor = 'transparent'
+		}
+	})
+
+	list_one.addEventListener('keydown', (e) => {
+		if (e.key === 'Enter') {
+			changeActImg('left')
+
+			if (!openList) {
+				e.stopPropagation()
+				ul.classList.add('open-list')
+				list_one.style.borderBottomColor = 'white'
+				list_two.style.borderBottomColor = 'white'
+				openList = true
+			} else {
+				closeList(ul)
+				list_one.style.borderBottomColor = 'transparent'
+			}
 		}
 	})
 

@@ -30,9 +30,6 @@ export function getContElemCont(elemTyp, className) {
 export function photoCard(selectedPic, indx) {
 	const { image } = selectedPic
 
-	const link = document.createElement('a')
-	link.setAttribute('href', 'javascript:void(0)')
-
 	const photographHeader__content = getContElemCont(
 		'article',
 		'photograph-media__card'
@@ -44,6 +41,7 @@ export function photoCard(selectedPic, indx) {
 	)
 
 	createMediaUrl(selectedPic, image, indx, photographMedia__imgCont, false)
+	// link.appendChild()
 
 	const photoMedia__text = getContElemCont('div', 'photo-media__text')
 	photoMedia__text.appendChild(textBlock('h2', selectedPic.title))
@@ -57,15 +55,10 @@ export function photoCard(selectedPic, indx) {
 	photographHeader__content.appendChild(photographMedia__imgCont)
 	photographHeader__content.appendChild(photoMedia__text)
 
-	link.appendChild(photographHeader__content)
+	// link.appendChild(photographHeader__content)
 
-	link.addEventListener('click', (e) => {
-		mediaIndx = e.target.getAttribute('data-indx-no')
-		console.log(mediaIndx)
-		toggleCarousel(mediaIndx)
-	})
-	// console.log(link)
-	return link
+	console.log(photographHeader__content)
+	return photographHeader__content
 }
 
 // creates carousel
@@ -101,6 +94,7 @@ export function createCarousel(elements) {
 	const closeBtn = getContElemCont('button', 'full_screen_media__btn')
 	closeBtn.classList.add('full_screen_media__btn-close')
 	closeBtn.setAttribute('aria-label', 'close')
+	closeBtn.setAttribute('tabindex', '1')
 	const closeBtnImg = getImage('close carousel', './assets/icons/close-red.svg')
 	closeBtn.addEventListener('click', () => toggleCarousel())
 
@@ -108,17 +102,29 @@ export function createCarousel(elements) {
 	const leftArrow = getImage('previous arrow', './assets/icons/arrow-red.svg')
 	leftLink.classList.add('full_screen_media__btn-left')
 	leftLink.setAttribute('aria-label', 'previous image')
+	leftLink.setAttribute('tabindex', '2')
 	leftLink.appendChild(leftArrow)
 	leftLink.addEventListener('click', () => {
 		changeActImg('left')
+	})
+	leftLink.addEventListener('keydown', (e) => {
+		if (e.key === 'Enter') {
+			changeActImg('left')
+		}
 	})
 
 	const rightLink = getContElemCont('a', 'full_screen_media__btn')
 	const rightArrow = getImage('next arrow', './assets/icons/arrow-red.svg')
 	rightLink.setAttribute('aria-label', 'next image')
+	rightLink.setAttribute('tabindex', '3')
 	rightLink.appendChild(rightArrow)
 	rightLink.addEventListener('click', () => {
 		changeActImg('right')
+	})
+	rightLink.addEventListener('keydown', (e) => {
+		if (e.key === 'Enter') {
+			changeActImg('right')
+		}
 	})
 	full_screen_media__carouselInner.appendChild(leftLink)
 	full_screen_media__carouselInner.appendChild(rightLink)
@@ -172,7 +178,16 @@ function createMediaUrl(
 			'div',
 			'carousel-item__imgContainer'
 		)
-		carouselImgCont.appendChild(img)
+		const link = document.createElement('a')
+		link.setAttribute('href', 'javascript:void(0)')
+
+		link.addEventListener('click', (e) => {
+			mediaIndx = e.target.getAttribute('data-indx-no')
+			toggleCarousel()
+		})
+
+		link.appendChild(img)
+		carouselImgCont.appendChild(link)
 		const parag = document.createElement('p')
 		parag.textContent = title
 
@@ -196,12 +211,21 @@ function createMediaUrl(
 		} else {
 			const imgUrl = selectedPic.getThumbnail()
 			const img = getImage(selectedPic.title, imgUrl)
+			const link = document.createElement('a')
+			link.setAttribute('href', 'javascript:void(0)')
+
+			link.addEventListener('click', (e) => {
+				mediaIndx = e.target.getAttribute('data-indx-no')
+				toggleCarousel()
+			})
+
 			img.dataset.indxNo = indx
 			const carouselImgCont = getContElemCont(
 				'div',
 				'carousel-item__imgContainer'
 			)
-			carouselImgCont.appendChild(img)
+			link.appendChild(img)
+			carouselImgCont.appendChild(link)
 			const parag = document.createElement('p')
 			parag.textContent = title
 
