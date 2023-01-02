@@ -2,6 +2,7 @@
 import getData from '../factories/getData.js'
 import mediaFactory from '../factories/media.js'
 import photographerFactory from '../factories/photographer.js'
+import { changeActImg, toggleCarousel } from '../factories/createDomElems.js'
 import {
 	getImage,
 	textBlock,
@@ -20,6 +21,18 @@ const mainCont = document.querySelector('#main')
 const bodyClick = document.querySelector('body')
 
 let openList = false
+
+bodyClick.addEventListener('keydown', (e) => {
+	if (e.key === 'ArrowRight') {
+		changeActImg('right')
+	}
+	if (e.key === 'ArrowLeft') {
+		changeActImg('left')
+	}
+	if (e.key === 'Escape') {
+		toggleCarousel()
+	}
+})
 
 /*
 bodyClick.addEventListener('click', () => {

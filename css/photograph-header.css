@@ -165,10 +165,13 @@
 
 .photograph-media__scroller .photograph-media__card {
 	width: 100%;
+	max-width: 347px;
+	max-height: 296px;
+	margin-top: 1.3em;
 }
 
 .photograph-media__scroller .carousel-item__imgContainer {
-	aspect-ratio: 7/6;
+	aspect-ratio: 7/5;
 }
 
 .photograph-media__card .photograph-media__imgCont {
@@ -184,7 +187,7 @@
 .photograph-media__scroller .photo-media__text {
 	display: flex;
 	align-items: center;
-	padding: 0.595em;
+	padding: 0.4em 0.5em;
 	justify-content: space-between;
 	color: #901c1c;
 }

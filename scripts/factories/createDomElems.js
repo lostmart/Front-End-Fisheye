@@ -128,6 +128,7 @@ export function createCarousel(elements) {
 	full_screen_media__carousel.appendChild(closeBtn)
 	full_screen_media.appendChild(full_screen_media__carousel)
 	carousel = full_screen_media
+
 	return full_screen_media
 }
 
@@ -181,24 +182,40 @@ function createMediaUrl(
 
 		return element
 	} else {
-		const videoUrl = `assets/${selectedPic.folderName()}${selectedPic.video}`
-		const video = document.createElement('video')
-		video.setAttribute('width', '350')
-		video.setAttribute('height', '300')
-		video.setAttribute('controls', true)
-		const source = document.createElement('source')
-		source.setAttribute('type', 'video/mp4')
-		source.src = videoUrl
-		video.appendChild(source)
-		element.appendChild(video)
+		if (carouselCard) {
+			const videoUrl = `assets/${selectedPic.folderName()}${selectedPic.video}`
+			const video = document.createElement('video')
+			video.setAttribute('width', '1080')
+			video.setAttribute('height', '607')
+			video.setAttribute('controls', true)
+			const source = document.createElement('source')
+			source.setAttribute('type', 'video/mp4')
+			source.src = videoUrl
+			video.appendChild(source)
+			element.appendChild(video)
+		} else {
+			const imgUrl = selectedPic.getThumbnail()
+			const img = getImage(selectedPic.title, imgUrl)
+			img.dataset.indxNo = indx
+			const carouselImgCont = getContElemCont(
+				'div',
+				'carousel-item__imgContainer'
+			)
+			carouselImgCont.appendChild(img)
+			const parag = document.createElement('p')
+			parag.textContent = title
+
+			element.appendChild(carouselImgCont)
+			element.appendChild(parag)
+		}
 
 		return element
 	}
 }
 
-function changeActImg(direction) {
-	if (direction === 'right') {
-		if (mediaIndx === noOfElements - 1) {
+export function changeActImg(direction) {
+	if (direction === 'right' && showCarousel) {
+		if (mediaIndx == noOfElements - 1) {
 			clearActiveItem()
 			mediaIndx = 0
 			setActiveItem()
@@ -207,8 +224,10 @@ function changeActImg(direction) {
 			mediaIndx++
 			setActiveItem()
 		}
-	} else {
-		if (mediaIndx === 0) {
+	}
+	if (direction === 'left' && showCarousel) {
+		if (mediaIndx == 0) {
+			console.log('desde cero !!')
 			clearActiveItem()
 			mediaIndx = noOfElements - 1
 			setActiveItem()
