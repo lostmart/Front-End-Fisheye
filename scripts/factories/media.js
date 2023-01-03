@@ -18,6 +18,11 @@ export function addLikes(indx) {
 export default function mediaFactory(media, usersId) {
 	let modelPhotosArray = []
 	// returns the selected array of pics according to the photographerId
+	/*
+
+		khjjh
+
+		*/
 	;(function () {
 		selectedPhotos = media.filter((photo) => photo.photographerId == usersId)
 		// console.log(selectedPhotos)
