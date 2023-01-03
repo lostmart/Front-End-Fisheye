@@ -109,7 +109,7 @@ async function init() {
 		photoModel.modelPhotosArray.forEach((photo, indx) => {
 			const link = photoCard(photo, indx)
 			photoMediaScroller.appendChild(link)
-			console.log(link)
+			// console.log(link)
 		})
 
 		photoMedia_thumbnails.appendChild(photographMediaThumbTitle)
@@ -160,7 +160,7 @@ async function init() {
 		photograph_media__scroller.textContent = ''
 		document.querySelector('.full_screen_media').remove()
 		photoModel.arrangeByDates()
-		console.log('by date')
+		// console.log('by date')
 		photoModel.modelPhotosArray.forEach((photo, indx) => {
 			const link = photoCard(photo, indx)
 			photoMediaScroller.appendChild(link)

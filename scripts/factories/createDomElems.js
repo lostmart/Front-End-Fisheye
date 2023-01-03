@@ -6,7 +6,7 @@ let mediaIndx = 0
 let noOfElements = null
 
 // create an image
-// first arg: name(alt text) - second: image source(url)
+// first arg: name(alt text) -String - second: image source(url) - String
 export function getImage(name, picture) {
 	const img = document.createElement('img')
 	img.setAttribute('src', picture)
@@ -15,6 +15,7 @@ export function getImage(name, picture) {
 }
 
 // creates a block of text with the element passed as string and its content
+// first arg: type(alt text) -String | second: text in the element - String
 export function textBlock(type, content) {
 	const textBlock = document.createElement(type)
 	textBlock.textContent = content
@@ -22,6 +23,7 @@ export function textBlock(type, content) {
 }
 
 // creates a container element with a class in it
+// first arg: type(alt text) -String | second: name of class - String
 export function getContElemCont(elemTyp, className) {
 	const elem = document.createElement(elemTyp)
 	elem.classList.add(className)

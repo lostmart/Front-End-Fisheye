@@ -6,7 +6,6 @@ function getData(url) {
 		try {
 			const res = await fetch(url)
 			const photographers = await res.json()
-			// console.log(photographers)
 			return photographers
 		} catch (err) {
 			alert("couldn't retreive data from server ... ")

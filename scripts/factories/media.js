@@ -3,26 +3,31 @@ import Photo from '../classes/mediaClass.js'
 let selectedPhotos = []
 let likesArray = []
 let globalLikes = 0
+let likedPhotos = []
 
 export function addLikes(indx) {
-	globalLikes++
-	const photograph__likes = document.querySelector('.photograph-header__likes')
-	photograph__likes.firstChild.textContent = globalLikes
-	const selectedLike = document.querySelectorAll('.photo-media__likes')[indx]
-	let addValue = Number(selectedLike.textContent)
-	addValue++
-	selectedLike.textContent = addValue
+	const found = likedPhotos.indexOf(indx)
+
+	if (found == -1) {
+		likedPhotos.push(indx)
+		globalLikes++
+		const photograph__likes = document.querySelector(
+			'.photograph-header__likes'
+		)
+		photograph__likes.firstChild.textContent = globalLikes
+		const selectedLike = document.querySelectorAll('.photo-media__likes')[indx]
+		let addValue = Number(selectedLike.textContent)
+		addValue++
+		selectedLike.textContent = addValue
+	} else {
+		return false
+	}
 }
 
 /*  factory fn: accepts an Array:["media"] and a String:"userId"  */
 export default function mediaFactory(media, usersId) {
 	let modelPhotosArray = []
 	// returns the selected array of pics according to the photographerId
-	/*
-
-		khjjh
-
-		*/
 	;(function () {
 		selectedPhotos = media.filter((photo) => photo.photographerId == usersId)
 		// console.log(selectedPhotos)
