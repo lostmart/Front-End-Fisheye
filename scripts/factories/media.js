@@ -9,21 +9,9 @@ export function addLikes(indx) {
 	const photograph__likes = document.querySelector('.photograph-header__likes')
 	photograph__likes.firstChild.textContent = globalLikes
 	const selectedLike = document.querySelectorAll('.photo-media__likes')[indx]
-	/*
-	likesArray.forEach((like, i) => {
-		console.log(like, i, Number(indx))
-		if (i === Number(indx)) {
-			like = 'pelotudo'
-		}
-	})
-	*/
-	const newArray = likesArray.map((like, i) => {
-		console.log(like, i, Number(indx))
-		if (i == Number(indx)) {
-			like = 'pelotudo'
-		}
-	})
-	console.log(newArray)
+	let addValue = Number(selectedLike.textContent)
+	addValue++
+	selectedLike.textContent = addValue
 }
 
 /*  factory fn: accepts an Array:["media"] and a String:"userId"  */
