@@ -197,6 +197,14 @@ function createMediaUrl(
 			toggleCarousel()
 		})
 
+		/* enter key  */
+		link.addEventListener('keydown', (e) => {
+			if (e.key === 'Enter') {
+				mediaIndx = e.target.getAttribute('data-indx-no')
+				toggleCarousel()
+			}
+		})
+
 		link.appendChild(img)
 		carouselImgCont.appendChild(link)
 		const parag = document.createElement('p')
