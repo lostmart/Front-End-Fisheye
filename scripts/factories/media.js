@@ -1,7 +1,30 @@
 // import Photographer from '../classes/photographerClass.js'
 import Photo from '../classes/mediaClass.js'
 let selectedPhotos = []
-let totalLikes = 0
+let likesArray = []
+let globalLikes = 0
+
+export function addLikes(indx) {
+	globalLikes++
+	const photograph__likes = document.querySelector('.photograph-header__likes')
+	photograph__likes.firstChild.textContent = globalLikes
+	const selectedLike = document.querySelectorAll('.photo-media__likes')[indx]
+	/*
+	likesArray.forEach((like, i) => {
+		console.log(like, i, Number(indx))
+		if (i === Number(indx)) {
+			like = 'pelotudo'
+		}
+	})
+	*/
+	const newArray = likesArray.map((like, i) => {
+		console.log(like, i, Number(indx))
+		if (i == Number(indx)) {
+			like = 'pelotudo'
+		}
+	})
+	console.log(newArray)
+}
 
 /*  factory fn: accepts an Array:["media"] and a String:"userId"  */
 export default function mediaFactory(media, usersId) {
@@ -16,17 +39,23 @@ export default function mediaFactory(media, usersId) {
 	function arrayModel() {
 		selectedPhotos.forEach((photo) => {
 			const photoModel = new Photo(photo)
-			calculateLikes(photoModel.likes)
+			likesArray.push(photoModel.likes)
+			// calculateLikes(photoModel.likes)
+			likesArray.reduce(calculateLikes)
+			globalLikes = likesArray.reduce(calculateLikes)
 			modelPhotosArray.push(photoModel)
 		})
-	}
-
-	function calculateLikes(likeNo) {
-		totalLikes = totalLikes + likeNo
 		const photograph__likes = document.querySelector(
 			'.photograph-header__likes'
 		)
-		photograph__likes.firstChild.textContent = totalLikes
+		photograph__likes.firstChild.textContent = globalLikes
+
+		// console.log(globalLikes)
+		// console.log(likesArray)
+	}
+
+	function calculateLikes(totalLikes, likeNo) {
+		return totalLikes + likeNo
 	}
 
 	/*  modifies modelPhotosArray by popularity   */
@@ -76,5 +105,6 @@ export default function mediaFactory(media, usersId) {
 		arrangeByPopularity,
 		arrangeByDates,
 		arrangeByTitles,
+		addLikes,
 	}
 }

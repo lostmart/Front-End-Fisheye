@@ -1,3 +1,5 @@
+import { addLikes } from './media.js'
+
 let showCarousel = false
 let carousel = null
 let mediaIndx = 0
@@ -46,13 +48,19 @@ export function photoCard(selectedPic, indx) {
 	const photoMedia__text = getContElemCont('div', 'photo-media__text')
 	photoMedia__text.appendChild(textBlock('h2', selectedPic.title))
 	const div = document.createElement('div')
-	div.appendChild(textBlock('span', selectedPic.likes))
+	const spanLikes = textBlock('span', selectedPic.likes)
+	spanLikes.classList.add('photo-media__likes')
+	div.appendChild(spanLikes)
 	photoMedia__text.appendChild(div)
 
 	const button = document.createElement('button')
 	button.setAttribute('data-indx', indx)
-	button.appendChild(getImage('likes', './assets/icons/heart-red.svg'))
-	button.addEventListener('click', (e) => console.log(e.target))
+	const hearImg = getImage('likes', './assets/icons/heart-red.svg')
+	hearImg.setAttribute('data-indx', indx)
+	button.appendChild(hearImg)
+	button.addEventListener('click', (e) =>
+		addLikes(e.target.getAttribute('data-indx'))
+	)
 
 	div.appendChild(button)
 	photoMedia__text.appendChild(div)
