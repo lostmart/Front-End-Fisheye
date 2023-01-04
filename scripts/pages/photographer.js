@@ -138,32 +138,47 @@ async function init() {
 
 	list_one.addEventListener('keydown', (e) => {
 		if (e.key === 'Enter') {
-			toggleList(e, ul, list_one, list_three, list_two, 'list-one')
+			toggleList(e, ul, list_one, list_two, list_three, 'list-one')
+		}
+	})
+
+	list_one.addEventListener('keydown', (e) => {
+		if (e.key === 'Tab') {
+			toggleList(e, ul, list_one, list_two, list_three, 'list-one')
 		}
 	})
 
 	// arrange by date
 	list_two.addEventListener('click', (e) => {
 		e.stopPropagation()
-		closeList(ul)
-		list_one.style.borderBottomColor = 'transparent'
-		let photograph_media__scroller = document.querySelector(
+		console.log(openList)
+		toggleList(e, ul, list_one, list_two, list_three, 'list-three')
+		console.log(openList)
+
+		ul.removeChild(list_one)
+		ul.removeChild(list_three)
+		ul.removeChild(list_two)
+
+		list_two.appendChild(list_img)
+		ul.appendChild(list_two)
+		ul.appendChild(list_three)
+		ul.appendChild(list_one)
+
+		// method to arrange media array
+		photoModel.arrangeByDates()
+
+		const photograph_media__scroller = document.querySelector(
 			'.photograph-media__scroller'
 		)
 		photograph_media__scroller.textContent = ''
 		document.querySelector('.full_screen_media').remove()
-		photoModel.arrangeByDates()
-		// console.log('by date')
+		console.log(photoModel.modelPhotosArray)
+
 		photoModel.modelPhotosArray.forEach((photo, indx) => {
 			const link = photoCard(photo, indx)
 			photoMediaScroller.appendChild(link)
 			// console.log(link)
 		})
-
-		photoMedia_thumbnails.appendChild(photographMediaThumbTitle)
-		photoMedia_thumbnails.appendChild(photoMediaScroller)
-		photographMedia.appendChild(photoMedia_thumbnails)
-
 		mainCont.appendChild(createCarousel(photoModel.modelPhotosArray))
 	})
 
@@ -198,25 +213,6 @@ async function init() {
 			photoMediaScroller.appendChild(link)
 			// console.log(link)
 		})
-
-		/*
-
-
-		
-
-		photoModel.modelPhotosArray.forEach((photo, indx) => {
-			const link = photoCard(photo, indx)
-			photoMediaScroller.appendChild(link)
-			// console.log(link)
-		})
-		photoMedia_thumbnails.appendChild(photographMediaThumbTitle)
-		photoMedia_thumbnails.appendChild(photoMediaScroller)
-		photographMedia.appendChild(photoMedia_thumbnails)
-
-		// const newCarousel = createCarousel(photoModel.modelPhotosArray)
-		// console.log(newCarousel)
-
-		*/
 		mainCont.appendChild(createCarousel(photoModel.modelPhotosArray))
 	})
 
