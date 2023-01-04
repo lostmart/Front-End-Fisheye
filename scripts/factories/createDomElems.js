@@ -164,7 +164,7 @@ export function toggleCarousel() {
 
 function setActiveItem() {
 	const selectedItem = document.querySelectorAll('.carousel-item')[mediaIndx]
-	selectedItem.style.display = 'flex !important'
+	selectedItem.style.display = 'flex'
 	console.log(selectedItem)
 }
 
@@ -205,7 +205,8 @@ function createMediaUrl(
 			if (e.key === 'Enter') {
 				console.log(showCarousel, e)
 				mediaIndx = e.target.getAttribute('data-indx-no')
-				toggleCarousel()
+				const car = document.querySelector('.carousel-item')
+				console.log(car)
 			}
 		})
 
