@@ -112,7 +112,7 @@
 	position: relative;
 }
 
-.photograph-media .photograph-media__thumbTitle SPAN {
+.photograph-media .photograph-media__thumbTitle span {
 	padding-top: 0.4em;
 }
 
@@ -176,6 +176,23 @@
 
 .photograph-media__card .photograph-media__imgCont {
 	max-width: 350px;
+}
+
+.photograph-media__card .photograph-media__imgCont a {
+	display: block;
+}
+
+.photo-media__text button:focus-visible,
+.photo-media__text button:focus,
+.photograph-media__card .photograph-media__imgCont a:focus-visible,
+.photograph-media__card .photograph-media__imgCont a:focus {
+	outline: #901c1c 4px solid;
+}
+
+.photo-media__text button:active,
+.photograph-media__card .photograph-media__imgCont a:active {
+	outline: #1e1c90 4px solid;
+	background-color: transparent;
 }
 
 .photograph-media__card .photograph-media__imgCont img {

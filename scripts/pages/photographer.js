@@ -1,37 +1,41 @@
 //Mettre le code JavaScript lié à la page photographer.html
-import getData from "../factories/getData.js"
-import mediaFactory from "../factories/media.js"
-import photographerFactory from "../factories/photographer.js"
-import { changeActImg, toggleCarousel } from "../factories/createDomElems.js"
+import getData from '../factories/getData.js'
+import mediaFactory from '../factories/media.js'
+import photographerFactory from '../factories/photographer.js'
+import { changeActImg, toggleCarousel } from '../factories/createDomElems.js'
 import {
 	getImage,
 	textBlock,
 	getContElemCont,
 	photoCard,
 	createCarousel,
-} from "../factories/createDomElems.js"
+	showCarousel,
+} from '../factories/createDomElems.js'
 /* create photographer based in photographer class  */
-import Photographer from "../classes/photographerClass.js"
+import Photographer from '../classes/photographerClass.js'
 
 const url =
-	"https://lostmart.github.io/Front-End-Fisheye/data/photographers.json"
+	'https://lostmart.github.io/Front-End-Fisheye/data/photographers.json'
 
 // DOM slements
-const mainCont = document.querySelector("#main")
-const bodyClick = document.querySelector("body")
+const mainCont = document.querySelector('#main')
+const bodyClick = document.querySelector('body')
 let arranged = false
 
 let openList = false
 
-bodyClick.addEventListener("keydown", (e) => {
-	if (e.key === "ArrowRight") {
-		changeActImg("right")
+bodyClick.addEventListener('keydown', (e) => {
+	if (e.key === 'ArrowRight') {
+		console.log('running chnage img')
+		changeActImg('right')
 	}
-	if (e.key === "ArrowLeft") {
-		changeActImg("left")
+	if (e.key === 'ArrowLeft') {
+		changeActImg('left')
 	}
-	if (e.key === "Escape") {
-		toggleCarousel()
+	if (e.key === 'Escape') {
+		if (showCarousel) {
+			toggleCarousel()
+		}
 	}
 })
 
@@ -43,14 +47,9 @@ bodyClick.addEventListener('click', () => {
 })
 */
 
-function closeList(ulList) {
-	ulList.classList.remove("open-list")
-	openList = false
-}
-
 /* data manipulation */
 const urlParams = new URLSearchParams(window.location.search)
-const usersId = urlParams.get("id")
+const usersId = urlParams.get('id')
 
 /* return selected photographer */
 function selectedPhotographer(photographers) {
@@ -67,7 +66,7 @@ async function init() {
 		new Photographer(selectedPhotographer(photographers))
 	)
 	photographerModel.singlePageHeader(photographerModel, mainCont)
-	const formTitle = document.querySelector(".modal__title")
+	const formTitle = document.querySelector('.modal__title')
 	formTitle.textContent += photographerModel.name
 
 	/*  PHOTO ARRAY CONSTRUCT    */
@@ -75,37 +74,43 @@ async function init() {
 	and three useful methods     */
 	const photoModel = mediaFactory(media, usersId)
 	// console.log(photoModel)
-	const photographMedia = document.querySelector(".photograph-media")
+	const photographMedia = document.querySelector('.photograph-media')
 	// run factory fn to populate gallery
 	const photoMedia_thumbnails = getContElemCont(
-		"div",
-		"photograph-media__thumbnails"
+		'div',
+		'photograph-media__thumbnails'
 	)
 	const photographMediaThumbTitle = getContElemCont(
-		"div",
-		"photograph-media__thumbTitle"
+		'div',
+		'photograph-media__thumbTitle'
 	)
-	const span = textBlock("span", "Tirer par")
-	const ul = document.createElement("ul")
-	const list_one = document.createElement("li")
-	const list_img = getImage("open indicator", "./assets/icons/chev-down.svg")
+	const span = textBlock('span', 'Tirer par')
+	const ul = document.createElement('ul')
+	ul.classList.add('photograph-media__thumbTitleUl')
+	const list_one = document.createElement('li')
+	const list_img = getImage('open indicator', './assets/icons/chev-down.svg')
 
-	list_one.textContent = "Popularité"
+	list_one.textContent = 'Popularité'
 	list_one.appendChild(list_img)
-	list_one.setAttribute("tabindex", "2")
-	const list_two = textBlock("li", "Date")
-	list_two.setAttribute("tabindex", "3")
-	const list_three = textBlock("li", "Titre")
-	list_three.setAttribute("tabindex", "4")
+	list_one.setAttribute('tabindex', '0')
+	const list_two = textBlock('li', 'Date')
+	list_two.setAttribute('tabindex', '0')
+	const list_three = textBlock('li', 'Titre')
+	list_three.setAttribute('tabindex', '0')
 
-	// arrange by popularity
-	ul.addEventListener("click", () => {
+	/*
+	list_img.addEventListener('click', (e) => {
+		toggleList(e, ul, list_one, list_two)
+	})
+	*/
+
+	// arrange by popularity on UL ????
+	ul.addEventListener('click', () => {
 		let photograph_media__scroller = document.querySelector(
-			".photograph-media__scroller"
+			'.photograph-media__scroller'
 		)
-		photograph_media__scroller.textContent = ""
-		document.querySelector(".full_screen_media").remove()
-		console.log("by popularity")
+		photograph_media__scroller.textContent = ''
+		document.querySelector('.full_screen_media').remove()
 		photoModel.arrangeByPopularity()
 		arranged = true
 
@@ -126,46 +131,27 @@ async function init() {
 		mainCont.appendChild(createCarousel(photoModel.modelPhotosArray))
 	})
 
-	list_one.addEventListener("click", (e) => {
-		if (!openList) {
-			e.stopPropagation()
-			ul.classList.add("open-list")
-			list_one.style.borderBottomColor = "white"
-			list_two.style.borderBottomColor = "white"
-			openList = true
-		} else {
-			closeList(ul)
-			list_one.style.borderBottomColor = "transparent"
-		}
+	list_one.addEventListener('click', (e) => {
+		console.log(openList)
+		toggleList(e, ul, list_one, list_two, list_three, 'list-one')
 	})
 
-	list_one.addEventListener("keydown", (e) => {
-		if (e.key === "Enter") {
-			changeActImg("left")
-
-			if (!openList) {
-				e.stopPropagation()
-				ul.classList.add("open-list")
-				list_one.style.borderBottomColor = "white"
-				list_two.style.borderBottomColor = "white"
-				openList = true
-			} else {
-				closeList(ul)
-				list_one.style.borderBottomColor = "transparent"
-			}
+	list_one.addEventListener('keydown', (e) => {
+		if (e.key === 'Enter') {
+			toggleList(e, ul, list_one, list_three, list_two, 'list-one')
 		}
 	})
 
 	// arrange by date
-	list_two.addEventListener("click", (e) => {
+	list_two.addEventListener('click', (e) => {
 		e.stopPropagation()
 		closeList(ul)
-		list_one.style.borderBottomColor = "transparent"
+		list_one.style.borderBottomColor = 'transparent'
 		let photograph_media__scroller = document.querySelector(
-			".photograph-media__scroller"
+			'.photograph-media__scroller'
 		)
-		photograph_media__scroller.textContent = ""
-		document.querySelector(".full_screen_media").remove()
+		photograph_media__scroller.textContent = ''
+		document.querySelector('.full_screen_media').remove()
 		photoModel.arrangeByDates()
 		// console.log('by date')
 		photoModel.modelPhotosArray.forEach((photo, indx) => {
@@ -182,22 +168,41 @@ async function init() {
 	})
 
 	// arrange by title
-	list_three.addEventListener("click", (e) => {
+	list_three.addEventListener('click', (e) => {
 		e.stopPropagation()
-		closeList(ul)
-		ul.textContent = ""
+		console.log(openList)
+		toggleList(e, ul, list_one, list_two, list_three, 'list-three')
+		console.log(openList)
 
-		ul.appendChild(list_one)
+		ul.removeChild(list_one)
+		ul.removeChild(list_three)
+		ul.removeChild(list_two)
+
+		list_three.appendChild(list_img)
 		ul.appendChild(list_three)
 		ul.appendChild(list_two)
+		ul.appendChild(list_one)
 
-		list_one.style.borderBottomColor = "transparent"
-		const photograph_media__scroller = document.querySelector(
-			".photograph-media__scroller"
-		)
-		photograph_media__scroller.textContent = ""
-		document.querySelector(".full_screen_media").remove()
+		// method to arrange media array
 		photoModel.arrangeByTitles()
+
+		const photograph_media__scroller = document.querySelector(
+			'.photograph-media__scroller'
+		)
+		photograph_media__scroller.textContent = ''
+		document.querySelector('.full_screen_media').remove()
+		console.log(photoModel.modelPhotosArray)
+
+		photoModel.modelPhotosArray.forEach((photo, indx) => {
+			const link = photoCard(photo, indx)
+			photoMediaScroller.appendChild(link)
+			// console.log(link)
+		})
+
+		/*
+
+
+		
 
 		photoModel.modelPhotosArray.forEach((photo, indx) => {
 			const link = photoCard(photo, indx)
@@ -208,10 +213,46 @@ async function init() {
 		photoMedia_thumbnails.appendChild(photoMediaScroller)
 		photographMedia.appendChild(photoMedia_thumbnails)
 
-		const newCarousel = createCarousel(photoModel.modelPhotosArray)
-		console.log(newCarousel)
+		// const newCarousel = createCarousel(photoModel.modelPhotosArray)
+		// console.log(newCarousel)
 
+		*/
 		mainCont.appendChild(createCarousel(photoModel.modelPhotosArray))
+	})
+
+	list_three.addEventListener('keydown', (e) => {
+		e.stopPropagation()
+		if (e.key === 'Enter') {
+			toggleCarousel()
+
+			toggleList(e, ul, list_one, list_two, list_three, 'list-three')
+			console.log(openList)
+
+			ul.removeChild(list_one)
+			ul.removeChild(list_three)
+			ul.removeChild(list_two)
+
+			list_three.appendChild(list_img)
+			ul.appendChild(list_three)
+			ul.appendChild(list_two)
+			ul.appendChild(list_one)
+
+			// method to arrange media array
+			photoModel.arrangeByTitles()
+
+			const photograph_media__scroller = document.querySelector(
+				'.photograph-media__scroller'
+			)
+			photograph_media__scroller.textContent = ''
+			document.querySelector('.full_screen_media').remove()
+			console.log(photoModel.modelPhotosArray)
+
+			photoModel.modelPhotosArray.forEach((photo, indx) => {
+				const link = photoCard(photo, indx)
+				photoMediaScroller.appendChild(link)
+				// console.log(link)
+			})
+		}
 	})
 
 	if (!arranged) {
@@ -224,8 +265,8 @@ async function init() {
 	photographMediaThumbTitle.appendChild(ul)
 
 	const photoMediaScroller = getContElemCont(
-		"div",
-		"photograph-media__scroller"
+		'div',
+		'photograph-media__scroller'
 	)
 
 	photoModel.modelPhotosArray.forEach((photo, indx) => {
@@ -239,6 +280,31 @@ async function init() {
 	photographMedia.appendChild(photoMedia_thumbnails)
 
 	mainCont.appendChild(createCarousel(photoModel.modelPhotosArray))
+}
+
+function toggleList(e, ul, list_one, list_two, list_three, active_li) {
+	if (active_li === 'list-one') {
+		list_one.style.borderBottomColor = 'white'
+	}
+	if (active_li === 'list-three') {
+		list_three.style.borderBottomColor = 'white'
+	}
+	if (!openList) {
+		e.stopPropagation()
+		ul.classList.add('open-list')
+		list_two.style.borderBottomColor = 'white'
+		openList = true
+	} else {
+		closeList(ul)
+		list_one.style.borderBottomColor = 'transparent'
+		list_two.style.borderBottomColor = 'transparent'
+		list_three.style.borderBottomColor = 'transparent'
+	}
+}
+
+function closeList(ulList) {
+	ulList.classList.remove('open-list')
+	openList = false
 }
 
 init()

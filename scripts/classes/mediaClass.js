@@ -43,33 +43,29 @@ export default class Photo {
 			case 'Animals_Wild_Horses_in_the_mountains.mp4':
 				thumbnail = 'Mimi/animals_video_thumb.jpg'
 				break
-		}
-		switch (this.video) {
+
 			case 'Sport_Tricks_in_the_air.mp4':
 				thumbnail = 'Ellie-Rose/trick_video_thumb.jpg'
 				break
-		}
-		switch (this.video) {
+
 			case 'Architecture_coverr_circle_empty_highway_in_buenos_aires_587740985637.mp4':
 				thumbnail = 'Marcel/Architecture_video_thumb.jpg'
 				break
-		}
-		switch (this.video) {
+
 			case 'Travel_Rock_Mountains.mp4':
 				thumbnail = 'Nabeel/Travel_Rock_video_thumb.jpg'
 				break
-		}
-		switch (this.video) {
+
 			case 'Animals_Puppiness.mp4':
 				thumbnail = 'Rhode/Animals_video_thumb.jpg'
 				break
-		}
-		switch (this.video) {
+
 			case 'Art_Wooden_Horse_Sculpture.mp4':
 				thumbnail = 'Tracy/Art_Wooden_video_thumb.jpg'
 				break
+			default:
+				thumbnail = null
 		}
-
 		return `assets/images/${thumbnail}`
 	}
 }

@@ -5,6 +5,7 @@ let likesArray = []
 let globalLikes = 0
 let likedPhotos = []
 
+/* likes only once per session   */
 export function addLikes(indx) {
 	const found = likedPhotos.indexOf(indx)
 

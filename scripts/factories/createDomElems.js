@@ -1,6 +1,6 @@
 import { addLikes } from './media.js'
 
-let showCarousel = false
+export let showCarousel = false
 let carousel = null
 let mediaIndx = 0
 let noOfElements = null
@@ -164,7 +164,8 @@ export function toggleCarousel() {
 
 function setActiveItem() {
 	const selectedItem = document.querySelectorAll('.carousel-item')[mediaIndx]
-	selectedItem.style.display = 'flex'
+	selectedItem.style.display = 'flex !important'
+	console.log(selectedItem)
 }
 
 function clearActiveItem() {
@@ -191,6 +192,8 @@ function createMediaUrl(
 		)
 		const link = document.createElement('a')
 		link.setAttribute('href', 'javascript:void(0)')
+		link.setAttribute('tabindex', '0')
+		link.setAttribute('data-indx-no', indx)
 
 		link.addEventListener('click', (e) => {
 			mediaIndx = e.target.getAttribute('data-indx-no')
@@ -200,17 +203,18 @@ function createMediaUrl(
 		/* enter key  */
 		link.addEventListener('keydown', (e) => {
 			if (e.key === 'Enter') {
+				console.log(showCarousel, e)
 				mediaIndx = e.target.getAttribute('data-indx-no')
 				toggleCarousel()
 			}
 		})
 
-		link.appendChild(img)
-		carouselImgCont.appendChild(link)
+		carouselImgCont.appendChild(img)
+		link.appendChild(carouselImgCont)
 		const parag = document.createElement('p')
 		parag.textContent = title
 
-		element.appendChild(carouselImgCont)
+		element.appendChild(link)
 		element.appendChild(parag)
 		// console.log(element)
 
@@ -256,6 +260,7 @@ function createMediaUrl(
 	}
 }
 
+/*  navigate the lightbox  */
 export function changeActImg(direction) {
 	if (direction === 'right' && showCarousel) {
 		if (mediaIndx == noOfElements - 1) {
@@ -270,7 +275,6 @@ export function changeActImg(direction) {
 	}
 	if (direction === 'left' && showCarousel) {
 		if (mediaIndx == 0) {
-			console.log('desde cero !!')
 			clearActiveItem()
 			mediaIndx = noOfElements - 1
 			setActiveItem()
