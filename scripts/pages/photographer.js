@@ -104,36 +104,37 @@ async function init() {
 	})
 	*/
 
-	// arrange by popularity on UL ????
-	ul.addEventListener('click', () => {
-		let photograph_media__scroller = document.querySelector(
-			'.photograph-media__scroller'
-		)
-		photograph_media__scroller.textContent = ''
-		document.querySelector('.full_screen_media').remove()
-		photoModel.arrangeByPopularity()
-		arranged = true
-
-		ul.appendChild(list_one)
-		ul.appendChild(list_two)
-		ul.appendChild(list_three)
-
-		photoModel.modelPhotosArray.forEach((photo, indx) => {
-			const link = photoCard(photo, indx)
-			photoMediaScroller.appendChild(link)
-			// console.log(link)
-		})
-
-		photoMedia_thumbnails.appendChild(photographMediaThumbTitle)
-		photoMedia_thumbnails.appendChild(photoMediaScroller)
-		photographMedia.appendChild(photoMedia_thumbnails)
-
-		mainCont.appendChild(createCarousel(photoModel.modelPhotosArray))
-	})
-
+	// arrange by popularity
 	list_one.addEventListener('click', (e) => {
-		console.log(openList)
-		toggleList(e, ul, list_one, list_two, list_three, 'list-one')
+		if (!openList) {
+			toggleList(e, ul, list_one, list_two, list_three, 'list-one')
+		} else {
+			closeList(ul)
+			let photograph_media__scroller = document.querySelector(
+				'.photograph-media__scroller'
+			)
+			photograph_media__scroller.textContent = ''
+			document.querySelector('.full_screen_media').remove()
+			photoModel.arrangeByPopularity()
+			arranged = true
+
+			list_one.appendChild(list_img)
+			ul.appendChild(list_one)
+			ul.appendChild(list_two)
+			ul.appendChild(list_three)
+
+			photoModel.modelPhotosArray.forEach((photo, indx) => {
+				const link = photoCard(photo, indx)
+				photoMediaScroller.appendChild(link)
+				// console.log(link)
+			})
+
+			photoMedia_thumbnails.appendChild(photographMediaThumbTitle)
+			photoMedia_thumbnails.appendChild(photoMediaScroller)
+			photographMedia.appendChild(photoMedia_thumbnails)
+
+			mainCont.appendChild(createCarousel(photoModel.modelPhotosArray))
+		}
 	})
 
 	list_one.addEventListener('keydown', (e) => {
@@ -292,14 +293,14 @@ function toggleList(e, ul, list_one, list_two, list_three, active_li) {
 		openList = true
 	} else {
 		closeList(ul)
-		list_one.style.borderBottomColor = 'transparent'
-		list_two.style.borderBottomColor = 'transparent'
-		list_three.style.borderBottomColor = 'transparent'
 	}
 }
 
 function closeList(ulList) {
 	ulList.classList.remove('open-list')
+	ulList.firstChild.style.borderBottomColor = 'transparent'
+	ulList.children[1].style.borderBottomColor = 'transparent'
+	ulList.children[2].style.borderBottomColor = 'transparent'
 	openList = false
 }
 
