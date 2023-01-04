@@ -165,7 +165,7 @@ export function toggleCarousel() {
 function setActiveItem() {
 	const selectedItem = document.querySelectorAll('.carousel-item')[mediaIndx]
 	selectedItem.style.display = 'flex'
-	console.log(selectedItem)
+	// console.log(selectedItem)
 }
 
 function clearActiveItem() {
@@ -203,7 +203,6 @@ function createMediaUrl(
 		/* enter key  */
 		link.addEventListener('keydown', (e) => {
 			if (e.key === 'Enter') {
-				console.log(showCarousel, e)
 				mediaIndx = e.target.getAttribute('data-indx-no')
 				const car = document.querySelector('.carousel-item')
 				console.log(car)
@@ -212,6 +211,7 @@ function createMediaUrl(
 
 		carouselImgCont.appendChild(img)
 		link.appendChild(carouselImgCont)
+
 		const parag = document.createElement('p')
 		parag.textContent = title
 
@@ -237,23 +237,33 @@ function createMediaUrl(
 			const img = getImage(selectedPic.title, imgUrl)
 			const link = document.createElement('a')
 			link.setAttribute('href', 'javascript:void(0)')
+			link.setAttribute('tabindex', '0')
+			link.setAttribute('data-indx-no', indx)
 
 			link.addEventListener('click', (e) => {
 				mediaIndx = e.target.getAttribute('data-indx-no')
 				toggleCarousel()
 			})
 
-			img.dataset.indxNo = indx
+			/* enter key  */
+			link.addEventListener('keydown', (e) => {
+				if (e.key === 'Enter') {
+					mediaIndx = e.target.getAttribute('data-indx-no')
+					const car = document.querySelector('.carousel-item')
+					console.log(car)
+				}
+			})
 			const carouselImgCont = getContElemCont(
 				'div',
 				'carousel-item__imgContainer'
 			)
-			link.appendChild(img)
-			carouselImgCont.appendChild(link)
+			carouselImgCont.appendChild(img)
+			link.appendChild(carouselImgCont)
+
 			const parag = document.createElement('p')
 			parag.textContent = title
 
-			element.appendChild(carouselImgCont)
+			element.appendChild(link)
 			element.appendChild(parag)
 		}
 
