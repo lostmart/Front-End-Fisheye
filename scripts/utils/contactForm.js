@@ -17,6 +17,8 @@ function closeModal() {
 	const modal = document.getElementById('contact_modal')
 	modal.style.display = 'none'
 	showContactModal = false
+	const contBtn = document.querySelector('.contact_button')
+	contBtn.focus()
 }
 
 body.addEventListener('keydown', (e) => {
@@ -42,9 +44,9 @@ form.addEventListener('submit', (e) => {
 		modal__title.textContent = 'Votre message a été envoyé avec succès'
 		console.log(msgDetails)
 		setTimeout(() => {
-			closeModal()
 			form.style.display = 'flex'
 			modal__title.textContent = 'Contactez-moi'
+			closeModal()
 		}, 1500)
 	}
 })

@@ -96,12 +96,7 @@ async function init() {
 	list_two.setAttribute('tabindex', '0')
 	const list_three = textBlock('li', 'Titre')
 	list_three.setAttribute('tabindex', '0')
-
-	/*
-	list_img.addEventListener('click', (e) => {
-		toggleList(e, ul, list_one, list_two)
-	})
-	*/
+	
 
 	// arrange by popularity
 	list_one.addEventListener('click', (e) => {
