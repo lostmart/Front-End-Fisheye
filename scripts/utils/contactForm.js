@@ -17,18 +17,20 @@ function closeModal() {
 	const modal = document.getElementById('contact_modal')
 	modal.style.display = 'none'
 	showContactModal = false
-	const contBtn = document.querySelector('.contact_button')
-	contBtn.focus()
+	//const contBtn = document.querySelector('.contact_button')
+	// contBtn.focus()
 }
 
 body.addEventListener('keydown', (e) => {
-	if (showContactModal && e.key === 'Escape') {
+	if (e.key === 'Escape') {
 		closeModal()
+		const contBtn = document.querySelector('.contact_button')
+		contBtn.focus()
 	}
 })
 
 closeBtn.addEventListener('keydown', (e) => {
-	if (showContactModal && e.key === 'Enter') {
+	if (e.key === 'Enter') {
 		closeModal()
 	}
 })
@@ -47,6 +49,8 @@ form.addEventListener('submit', (e) => {
 			form.style.display = 'flex'
 			modal__title.textContent = 'Contactez-moi'
 			closeModal()
+			const contBtn = document.querySelector('.contact_button')
+			contBtn.focus()
 		}, 1500)
 	}
 })
