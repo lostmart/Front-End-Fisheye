@@ -1,17 +1,35 @@
 const form = document.querySelector('form')
 const modal = document.querySelector('#contact_modal')
 const modal__title = document.querySelector('.modal__title')
+const body = document.querySelector('body')
+const closeBtn = document.querySelector('.modal__btn-close')
+let showContactModal = false
 
 let msgDetails = {}
 
 function displayModal() {
 	modal.style.display = 'flex'
+	showContactModal = true
+	form.first_name.focus()
 }
 
 function closeModal() {
 	const modal = document.getElementById('contact_modal')
 	modal.style.display = 'none'
+	showContactModal = false
 }
+
+body.addEventListener('keydown', (e) => {
+	if (showContactModal && e.key === 'Escape') {
+		closeModal()
+	}
+})
+
+closeBtn.addEventListener('keydown', (e) => {
+	if (showContactModal && e.key === 'Enter') {
+		closeModal()
+	}
+})
 
 form.addEventListener('submit', (e) => {
 	e.preventDefault()
